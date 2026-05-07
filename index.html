@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tavaszi Kert Rajzpályázat 2026 — MyFarm × Gardena × Sablonmentes</title>
+<meta name="description" content="Rajzpályázat óvodásoknak és kisiskolásoknak. Rajzolj egy tavaszi kertet — és nyerj egyet! Benevezés 2026. május 13–31.">
+<style>
+  :root {
+    --green-deep: #2d5a3d;
+    --green: #4a8b5c;
+    --green-soft: #7eb88f;
+    --green-bg: #eaf4ec;
+    --cream: #fdf8ee;
+    --cream-warm: #f5ecd7;
+    --sun: #f4c95d;
+    --sun-soft: #fce5a8;
+    --carrot: #e8825a;
+    --earth: #5c4a3a;
+    --text: #2a3328;
+    --text-soft: #5a6155;
+    --border: #d9d0bb;
+    --shadow: 0 6px 20px rgba(45, 90, 61, 0.08);
+    --shadow-lg: 0 12px 36px rgba(45, 90, 61, 0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .narrow {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(253, 248, 238, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 14px 0;
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .logo {
+    font-weight: 700;
+    color: var(--green-deep);
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-cta {
+    background: var(--green-deep);
+    color: white;
+    padding: 9px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .nav-cta:hover { background: var(--green); transform: translateY(-1px); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background:
+      radial-gradient(circle at 15% 20%, var(--sun-soft) 0%, transparent 35%),
+      radial-gradient(circle at 85% 80%, var(--green-bg) 0%, transparent 40%),
+      linear-gradient(180deg, var(--cream) 0%, var(--cream-warm) 100%);
+    padding: 80px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "🌻";
+    position: absolute;
+    top: 8%; right: 6%;
+    font-size: 90px;
+    opacity: 0.25;
+    transform: rotate(-12deg);
+  }
+  .hero::after {
+    content: "🥕";
+    position: absolute;
+    bottom: 8%; left: 4%;
+    font-size: 80px;
+    opacity: 0.25;
+    transform: rotate(20deg);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: white;
+    border: 2px solid var(--green-soft);
+    color: var(--green-deep);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 5.5vw, 56px);
+    line-height: 1.1;
+    color: var(--green-deep);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+  }
+  .hero h1 .accent { color: var(--carrot); }
+  .hero .subhead {
+    font-size: clamp(17px, 1.6vw, 20px);
+    color: var(--text-soft);
+    margin-bottom: 28px;
+    max-width: 640px;
+  }
+  .hero .body-text {
+    font-size: 17px;
+    color: var(--text);
+    margin-bottom: 36px;
+    max-width: 640px;
+    white-space: pre-line;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    display: inline-block;
+    padding: 15px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    text-align: center;
+  }
+  .btn-primary {
+    background: var(--green-deep);
+    color: white;
+    box-shadow: 0 4px 14px rgba(45, 90, 61, 0.25);
+  }
+  .btn-primary:hover {
+    background: var(--green);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(45, 90, 61, 0.3);
+  }
+  .btn-secondary {
+    background: white;
+    color: var(--green-deep);
+    border: 2px solid var(--green-deep);
+  }
+  .btn-secondary:hover {
+    background: var(--green-bg);
+    transform: translateY(-2px);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section {
+    padding: 80px 0;
+  }
+  section.alt {
+    background: var(--green-bg);
+  }
+  section.cream-alt {
+    background: var(--cream-warm);
+  }
+  h2 {
+    font-size: clamp(28px, 3.8vw, 40px);
+    color: var(--green-deep);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 36px;
+    text-align: center;
+  }
+  h3 {
+    font-size: 20px;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .section-intro {
+    font-size: 18px;
+    color: var(--text-soft);
+    text-align: center;
+    margin-bottom: 48px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: pre-line;
+  }
+
+  /* ---------- LIST CARDS ---------- */
+  .card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .card .icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  /* ---------- ABOUT / CATEGORIES ---------- */
+  .about-body {
+    font-size: 17px;
+    color: var(--text);
+    margin-bottom: 40px;
+    text-align: center;
+    white-space: pre-line;
+  }
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .cat-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 18px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cat-card:hover {
+    border-color: var(--green-soft);
+    transform: translateY(-3px);
+  }
+  .cat-card .cat-icon { font-size: 38px; display: block; margin-bottom: 10px; }
+  .cat-card .cat-label {
+    font-weight: 700;
+    color: var(--green-deep);
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  .cat-card .cat-age {
+    font-size: 14px;
+    color: var(--text-soft);
+  }
+  .cat-card .cat-note {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+  .cat-card .cat-tag {
+    display: inline-block;
+    background: var(--green-bg);
+    color: var(--green-deep);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .center { text-align: center; }
+
+  /* ---------- THEME / TECHNIQUE ---------- */
+  .theme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  .theme-block {
+    background: white;
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+  .theme-block h3 { margin-bottom: 18px; }
+  .theme-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .theme-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 16px;
+  }
+  .theme-list .ic {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .technique-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .pill {
+    background: var(--cream-warm);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .quote-note {
+    text-align: center;
+    font-style: italic;
+    color: var(--green-deep);
+    font-size: 19px;
+    margin-top: 8px;
+    padding: 24px;
+    background: var(--sun-soft);
+    border-radius: var(--radius);
+    font-weight: 600;
+  }
+
+  /* ---------- PRIZES ---------- */
+  .prize-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .prize-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 28px 22px;
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--green-soft);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .prize-card:nth-child(1) { border-top-color: var(--green-soft); }
+  .prize-card:nth-child(2) { border-top-color: var(--sun); }
+  .prize-card:nth-child(3) { border-top-color: var(--carrot); }
+  .prize-card:nth-child(4) { border-top-color: var(--green); }
+  .prize-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .prize-card .pi { font-size: 44px; display: block; margin-bottom: 12px; }
+  .prize-card .ptitle {
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .prize-card .pdesc {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+  .participation {
+    margin-top: 32px;
+    text-align: center;
+    background: white;
+    padding: 22px 28px;
+    border-radius: var(--radius);
+    border: 2px dashed var(--green-soft);
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  /* ---------- BENEFITS ---------- */
+  .benefits-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .benefits-list li {
+    background: white;
+    padding: 18px 22px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 16px;
+  }
+  .benefits-list .ic { font-size: 22px; flex-shrink: 0; }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .flow-tabs {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: white;
+    border: 2px solid var(--border);
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-soft);
+    transition: all 0.2s;
+  }
+  .tab-btn.active {
+    background: var(--green-deep);
+    color: white;
+    border-color: var(--green-deep);
+  }
+  .flow-steps { display: none; }
+  .flow-steps.active { display: grid; }
+  .flow-steps {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .step-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .step-num {
+    position: absolute;
+    top: -16px;
+    left: 24px;
+    background: var(--green-deep);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .step-card .step-icon { font-size: 32px; display: block; margin: 12px 0 14px; }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .timeline-item {
+    background: white;
+    border-radius: var(--radius);
+    padding: 26px 32px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    min-width: 240px;
+    border-left: 5px solid var(--sun);
+  }
+  .timeline-item:nth-child(2) { border-left-color: var(--carrot); }
+  .timeline-item .ic { font-size: 32px; display: block; margin-bottom: 8px; }
+  .timeline-item .label {
+    font-size: 14px;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .timeline-item .date {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--green-deep);
+  }
+  .urgency {
+    text-align: center;
+    color: var(--carrot);
+    font-weight: 600;
+    margin-bottom: 28px;
+    font-size: 16px;
+  }
+
+  /* ---------- FORMS ---------- */
+  .form-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .form-card h2 { text-align: left; margin-bottom: 6px; }
+  .form-card .sub {
+    color: var(--text-soft);
+    margin-bottom: 28px;
+    font-size: 16px;
+  }
+  .field {
+    margin-bottom: 22px;
+  }
+  .field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .field .req { color: var(--carrot); }
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="file"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--cream);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--green);
+    background: white;
+  }
+  .field .hint {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-top: 6px;
+  }
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background: var(--cream);
+    transition: all 0.2s;
+  }
+  .radio-option:hover { border-color: var(--green-soft); }
+  .radio-option input[type="radio"] { accent-color: var(--green-deep); }
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .checkbox-option {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .checkbox-option input[type="checkbox"] {
+    margin-top: 4px;
+    accent-color: var(--green-deep);
+    flex-shrink: 0;
+  }
+  .submit-btn {
+    width: 100%;
+    background: var(--green-deep);
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .submit-btn:hover { background: var(--green); }
+  .submit-btn:active { transform: scale(0.98); }
+
+  /* ---------- CHOOSER (form típus választó) ---------- */
+  .chooser-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 760px;
+    margin: 0 auto 40px;
+  }
+  .choice-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 24px;
+    text-align: center;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+    color: var(--text);
+    width: 100%;
+  }
+  .choice-card:hover {
+    border-color: var(--green-soft);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .choice-card.active {
+    border-color: var(--green-deep);
+    background: var(--green-bg);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .choice-card .choice-icon {
+    font-size: 52px;
+    display: block;
+    margin-bottom: 14px;
+  }
+  .choice-card h3 {
+    margin-bottom: 8px;
+    font-size: 19px;
+    color: var(--green-deep);
+  }
+  .choice-card p {
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  @media (max-width: 640px) {
+    .chooser-grid { grid-template-columns: 1fr; gap: 14px; }
+    .choice-card { padding: 26px 20px; }
+    .choice-card .choice-icon { font-size: 44px; }
+  }
+
+  /* ---------- MODAL (lapozható nyilatkozatok) ---------- */
+  .checkbox-option a {
+    color: var(--green-deep);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .checkbox-option a:hover { color: var(--green); }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(45, 90, 61, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: modalFade 0.2s ease-out;
+  }
+  .modal-overlay[hidden] { display: none; }
+
+  @keyframes modalFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes modalSlide {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-box {
+    background: white;
+    border-radius: 18px;
+    max-width: 760px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.32);
+    animation: modalSlide 0.25s ease-out;
+  }
+  .modal-header {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+    flex-shrink: 0;
+  }
+  .modal-tabs {
+    display: flex;
+    flex: 1;
+    gap: 0;
+  }
+  .modal-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 16px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-soft);
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .modal-tab:hover { color: var(--green-deep); background: rgba(255,255,255,0.5); }
+  .modal-tab.active {
+    color: var(--green-deep);
+    border-bottom-color: var(--green-deep);
+    background: white;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    padding: 0 22px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-soft);
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--carrot); }
+
+  .modal-content {
+    overflow-y: auto;
+    padding: 30px 36px 28px;
+    flex: 1;
+  }
+  .modal-pane[hidden] { display: none; }
+  .modal-pane h3.legal-title {
+    font-size: 22px;
+    text-align: center;
+    margin: 0 0 4px;
+    color: var(--green-deep);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .modal-pane .legal-subtitle {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+    font-style: italic;
+  }
+  .modal-pane h4 {
+    font-size: 16px;
+    margin: 22px 0 8px;
+    color: var(--green-deep);
+    font-weight: 700;
+  }
+  .modal-pane h4:first-of-type { margin-top: 0; }
+  .modal-pane p {
+    margin-bottom: 9px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .modal-pane ul {
+    margin: 4px 0 12px 22px;
+    padding: 0;
+  }
+  .modal-pane ul li {
+    margin-bottom: 6px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .modal-pane a {
+    color: var(--green-deep);
+    text-decoration: underline;
+  }
+  .modal-pane .legal-footer {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 13px;
+    margin-top: 26px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+  }
+  @media (max-width: 640px) {
+    .modal-content { padding: 22px 20px; }
+    .modal-tab { padding: 13px 10px; font-size: 12.5px; }
+    .modal-close { padding: 0 14px; font-size: 24px; }
+    .modal-pane h3.legal-title { font-size: 19px; }
+  }
+
+  /* ---------- ORGANIZERS ---------- */
+  .org-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .org-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .org-card .org-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+  }
+  .org-card .org-desc {
+    font-size: 15px;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  .org-card a {
+    color: var(--green);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .org-card a:hover { text-decoration: underline; }
+
+  /* ---------- FAQ ---------- */
+  .faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  details {
+    background: white;
+    margin-bottom: 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  details[open] { box-shadow: var(--shadow); }
+  summary {
+    padding: 18px 22px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--green-deep);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    font-size: 24px;
+    color: var(--green);
+    font-weight: 400;
+    transition: transform 0.2s;
+  }
+  details[open] summary::after { content: "−"; }
+  details > div {
+    padding: 0 22px 20px;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing {
+    background: linear-gradient(135deg, var(--green-deep) 0%, var(--green) 100%);
+    color: white;
+    text-align: center;
+    padding: 90px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing::before {
+    content: "🌱";
+    position: absolute;
+    top: 12%; left: 8%;
+    font-size: 70px;
+    opacity: 0.2;
+  }
+  .closing::after {
+    content: "🌷";
+    position: absolute;
+    bottom: 12%; right: 8%;
+    font-size: 70px;
+    opacity: 0.2;
+  }
+  .closing h2 {
+    color: white;
+    margin-bottom: 22px;
+  }
+  .closing .body-text {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 17px;
+    max-width: 640px;
+    margin: 0 auto 36px;
+    white-space: pre-line;
+  }
+  .closing .btn-primary {
+    background: white;
+    color: var(--green-deep);
+  }
+  .closing .btn-primary:hover { background: var(--cream); }
+  .closing .btn-secondary {
+    background: transparent;
+    color: white;
+    border-color: white;
+  }
+  .closing .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .closing .cta-row { justify-content: center; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--earth);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 36px 0;
+    text-align: center;
+    font-size: 14px;
+  }
+  footer a { color: var(--sun-soft); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 640px) {
+    section { padding: 60px 0; }
+    .hero { padding: 56px 0 70px; }
+    .form-card { padding: 26px 22px; }
+    .theme-grid { grid-template-columns: 1fr; gap: 18px; }
+    .timeline-item { min-width: 0; width: 100%; }
+    .btn { padding: 13px 22px; font-size: 15px; }
+    .nav-cta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <h1>Rajzoljatok, alkossatok együtt, <span class="accent">és közben nyerjetek!</span></h1>
+    <p class="subhead">Rajzpályázat óvodásoknak és kisiskolásoknak.</p>
+    <p class="body-text">A Gardena csapatával és a Sablonmentes.hu-val, akit sokan Okos Timiként ismertek, közösen indítunk egy rajzpályázatot gyerkőcöknek.
+
+Mi is szülők vagyunk, ezért pontosan tudjuk, milyen jó, amikor van egy program, ami egyszerre kreatív, közös élmény és még a gyerekeket is leköti egy kis időre. Most erre hívunk benneteket is.
+
+Szeretnénk, hogy minél több gyerek értse, hogyan működik a természet, és hogy a zöldség ne egy „kötelező rossz" legyen, hanem valami, ami szupererőt ad a mindennapokhoz.
+
+Rajzoljatok egy tavaszi kertet, veteményest vagy a kedvenc zöldségeteket otthon, az oviban vagy akár az iskolában. Lehet egyéni alkotás, de akár közös csoportmunka is. A lényeg, hogy együtt alkossatok, érezzétek jól magatokat, és közben még nyerhettek is.</p>
+    <div class="cta-row">
+      <a href="#egyeni-form" class="btn btn-primary">Benevezem a gyerekemet</a>
+      <a href="#csoportos-form" class="btn btn-secondary">Benevezem a csoportomat / osztályomat</a>
+    </div>
+  </div>
+</header>
+
+<!-- PAIN POINTS -->
+<section class="alt">
+  <div class="container">
+    <h2>Te is így vagy vele?</h2>
+    <div class="card-list">
+      <div class="card"><span class="icon">🌱</span>Jó lenne végre egy olyan közös program, ami nem a képernyő előtt telik, mégis órákra leköti a gyerekeket és célt ad neki.</div>
+      <div class="card"><span class="icon">🥕</span>Szeretnéd, ha a gyereked közelebb kerülne a természethez, és úgy tanulna a zöldségekről, hogy közben észre sem veszi.</div>
+      <div class="card"><span class="icon">🏫</span>Pedagógusként keresel egy kreatív projektet, ami az egész csoportot vagy osztályt megmozgatja, és amire még napokkal később is büszkén emlékeznek majd.</div>
+      <div class="card"><span class="icon">🏆</span>Jó lenne, ha a gyerekek megélnék, hogy amit készítenek, annak értéke van. Hogy büszkén mutathassák meg: „ezt én rajzoltam".</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT + DÍJAK (összevonva) -->
+<section>
+  <div class="container">
+    <div style="max-width: 760px; margin: 0 auto 36px;">
+      <h2>Miért csináljuk ezt az egészet?</h2>
+      <p class="about-body">Hisszük, hogy a gyerekek akkor tanulnak a legtöbbet, amikor közben jól érzik magukat.
+
+Szülőként mi is pontosan tudjuk, milyen nehéz néha olyan programot találni, ami egyszerre kreatív, közös élmény és nem a képernyő körül forog. Olyat, ami egy kicsit közelebb viszi őket a természethez, az alkotáshoz és egymáshoz is.
+
+Ezért fogott össze a <strong>MyFarm Kertek</strong>, a <strong>Gardena Magyarország</strong> és a <strong>Sablonmentes.hu</strong>, hogy közösen elindítsuk a Tavaszi Kert Rajzpályázatot.
+
+A pályázatra bármely 3–12 éves gyerek jelentkezhet egyénileg, de akár egész óvodai csoportok és iskolai osztályok is csatlakozhatnak pedagógus vezetésével.
+
+Nem a tökéletes rajzot keressük. Hanem azokat az alkotásokat, amik mögött ott van a fantázia, a közös élmény és egy kis szeretet is.</p>
+    </div>
+
+    <div style="max-width: 760px; margin: 0 auto 32px;">
+      <p class="about-body">Mind a négy kategóriában nyertest hirdetünk.
+
+A három egyéni kategória nyertesei MyFarm finomságokat, Gardena kerti eszközöket és Zöldségdzsungel memóriajátékot is kapnak ajándékba.
+
+Az óvodai és iskolai kategória nyertese pedig az apró meglepetések mellett egy <strong>Gardena Micro-Drip-System indulókészletet</strong> is kap magaságyásokhoz és veteményesekhez, hogy még könnyebb legyen saját kis kertet kialakítani az intézményben.</p>
+    </div>
+
+    <div class="prize-grid">
+      <div class="prize-card">
+        <span class="pi">🌱</span>
+        <div class="ptitle">Gardena kiskertészeknek szóló csomag</div>
+        <div class="pdesc">Igazi kis kertészszerszámok a legkisebbeknek — hogy a rajzból egyszer valóság legyen.</div>
+        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">PÖTTÖM • 3–5 ÉV</p>
+      </div>
+      <div class="prize-card">
+        <span class="pi">🃏</span>
+        <div class="ptitle">Zöldségdzsungel memóriakártya</div>
+        <div class="pdesc">Játék, ami közben észrevétlenül tanulnak is — pont ilyen ez az egész pályázat.</div>
+        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">KIS ALKOTÓK • 6–8 ÉV</p>
+      </div>
+      <div class="prize-card">
+        <span class="pi">📦</span>
+        <div class="ptitle">MyFarm zöldségláda</div>
+        <div class="pdesc">Friss, vegyszermentes zöldségek egyenesen a kertből — mert a nagymenőknek nagymenő díj jár.</div>
+        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">NAGYMENŐK • 9–12 ÉV</p>
+      </div>
+      <div class="prize-card">
+        <span class="pi">💧</span>
+        <div class="ptitle">Gardena Micro-Drip-System Indulókészlet magaságyásokhoz</div>
+        <div class="pdesc">Hogy a rajzból valóság legyen — és az egész csoport együtt kertészkedhessen az oviban vagy a suliban.</div>
+        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">KÖZÖS KERT • CSOPORTOS</p>
+      </div>
+    </div>
+
+    <div class="participation">
+      🏅 <strong>Minden beküldő gyerek kap egy személyre szóló részvételi oklevelet.</strong> Mert minden alkotás megérdemel egy ünneplést.
+    </div>
+  </div>
+</section>
+
+<!-- THEME & TECHNIQUE -->
+<section class="cream-alt">
+  <div class="container narrow">
+    <h2>Mit kell rajzolni? És mivel?</h2>
+    <div class="theme-grid">
+      <div class="theme-block">
+        <h3>🌸 Témák</h3>
+        <ul class="theme-list">
+          <li><span class="ic">🥦</span><span>tavaszi zöldséget (répát, borsót, salátát, bármit!)</span></li>
+          <li><span class="ic">🌿</span><span>veteményest vagy kiskertét</span></li>
+          <li><span class="ic">🌸</span><span>tavaszi kertet ahogy ő elképzeli</span></li>
+        </ul>
+      </div>
+      <div class="theme-block">
+        <h3>🎨 Technika</h3>
+        <div class="technique-pills">
+          <span class="pill">✏️ ceruza</span>
+          <span class="pill">🖊️ filctoll</span>
+          <span class="pill">🎨 festék</span>
+          <span class="pill">🖍️ zsírkréta</span>
+        </div>
+        <p style="margin-top:18px; color: var(--text-soft); font-size:14px;">Bármi, amivel a gyerek szívesen rajzol.</p>
+      </div>
+    </div>
+    <p class="quote-note">Nincs rossz megoldás. Nincs helyes arány. Csak a közös alkotás öröme számít.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <h2>Három lépés az egész</h2>
+    <div class="flow-tabs">
+      <button class="tab-btn active" data-flow="egyeni">👨‍👩‍👧 Egyénileg</button>
+      <button class="tab-btn" data-flow="csoportos">🏫 Csoporttal / osztállyal</button>
+    </div>
+
+    <div class="flow-steps active" data-flow="egyeni">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <span class="step-icon">🎨</span>
+        <h3>Rajzoljatok együtt</h3>
+        <p>Vegyetek elő egy lapot és bármit, amivel rajzolni lehet. Ceruza, filctoll, festék, zsírkréta — mind tökéletes. Rajzolj tavaszi kertet, zöldséget, veteményest — ahogy ti elképzelitek.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <span class="step-icon">📸</span>
+        <h3>Fotózd le és töltsd fel</h3>
+        <p>Készíts egy jó fényben lévő fotót a rajzról és töltsd fel az alábbi űrlapon. Add meg a gyerek nevét, korát, a te e-mail-címedet és városodat. Öt perc az egész.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <span class="step-icon">🌻</span>
+        <h3>Várjatok június 1-jéig</h3>
+        <p>Június 1-jén hirdetjük az eredményt a közösségi oldalainkon. Addig szurkoljatok!</p>
+      </div>
+    </div>
+
+    <div class="flow-steps" data-flow="csoportos">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <span class="step-icon">🎨</span>
+        <h3>Rajzoljon az egész csoport</h3>
+        <p>Szervezzetek egy rajzos foglalkozást — tavaszi kert, veteményes, kedvenc zöldség. Minden gyerek rajzolhat saját lapra, annyi rajzot küldhetsz be, amennyit szeretnél.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <span class="step-icon">📸</span>
+        <h3>Töltsd fel a rajzokat</h3>
+        <p>Fotózd le a rajzokat és töltsd fel az alábbi csoportos űrlapon. Add meg az intézmény nevét, a csoport / osztály nevét és a saját e-mail-címedet.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <span class="step-icon">🌻</span>
+        <h3>Várjatok június 1-jéig</h3>
+        <p>Ha nyertek, az egész csoport együtt kertészkedhet az új Gardena öntözőrendszerrel!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="cream-alt">
+  <div class="container">
+    <h2>Mikor?</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="ic">📅</span>
+        <div class="label">Benevezési időszak</div>
+        <div class="date">2026. május 13–31.</div>
+      </div>
+      <div class="timeline-item">
+        <span class="ic">🏆</span>
+        <div class="label">Eredményhirdetés</div>
+        <div class="date">Várjátok velünk június 1-jét!</div>
+        <p style="font-size: 14px; color: var(--text-soft); margin-top: 10px; line-height: 1.55; font-weight: 400;">Az eredményhirdetés után e-mailben értesítünk Titeket, addig pedig szurkoljatok és alkossatok nagy örömmel.</p>
+      </div>
+    </div>
+    <div class="cta-row" style="justify-content:center; margin-top: 28px;">
+      <a href="#egyeni-form" class="btn btn-primary">Benevezem a gyerekemet</a>
+      <a href="#csoportos-form" class="btn btn-secondary">Benevezem a csoportomat</a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEVEZÉS -->
+<section id="benevezes" class="alt">
+  <div class="container">
+    <h2>Benevezés</h2>
+    <p class="section-intro">Először válaszd ki, hogyan szeretnél benevezni:</p>
+
+    <div class="chooser-grid">
+      <button type="button" class="choice-card" data-choice="egyeni">
+        <span class="choice-icon">👨‍👩‍👧</span>
+        <h3>Egyéni benevezés</h3>
+        <p>Egy gyerek — szülőként vagy nagyszülőként</p>
+      </button>
+      <button type="button" class="choice-card" data-choice="csoportos">
+        <span class="choice-icon">🏫</span>
+        <h3>Csoportos benevezés</h3>
+        <p>Ovis csoport vagy iskolai osztály — pedagógusként</p>
+      </button>
+    </div>
+
+    <div id="egyeni-form" class="form-card" style="display:none;">
+      <h2>Egyéni benevezés</h2>
+      <p class="sub">Töltsd ki az űrlapot — öt perc az egész.</p>
+      <form onsubmit="handleSubmit(event, 'egyeni')">
+        <div class="field">
+          <label>A gyerek neve <span class="req">*</span></label>
+          <input type="text" name="child_name" required>
+        </div>
+        <div class="field">
+          <label>Kategória <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="category" value="pottom" required> Pöttöm — 3–5 év</label>
+            <label class="radio-option"><input type="radio" name="category" value="kis-alkotok"> Kis alkotók — 6–8 év</label>
+            <label class="radio-option"><input type="radio" name="category" value="nagymenok"> Nagymenők — 9–12 év</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Melyik városban éltek? <span class="req">*</span></label>
+          <input type="text" name="city" required>
+        </div>
+        <div class="field">
+          <label>A te e-mail-címed <span class="req">*</span></label>
+          <input type="email" name="email" required>
+          <p class="hint">Ide küldjük az oklevelet és az eredményt.</p>
+        </div>
+        <div class="field">
+          <label>A rajz fotója <span class="req">*</span></label>
+          <input type="file" name="drawing" accept="image/jpeg,image/png" required>
+          <p class="hint">Jó fényben készített, éles fotó — jpg vagy png, max. 10 MB.</p>
+        </div>
+        <div class="checkbox-group">
+          <label class="checkbox-option">
+            <input type="checkbox" required>
+            <span>Elolvastam és elfogadom a <a href="#" class="legal-link" data-tab="terms">részvételi feltételeket</a> és az adatkezelési tájékoztatót, és hozzájárulok, hogy a beküldött rajz a szervezők kommunikációs felületein megjelenjen. <span class="req">*</span></span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" required>
+            <span>Szeretnék hírlevelet kapni a MyFarm Kertek újdonságairól. Az adatkezelés részleteit az <a href="#" class="legal-link" data-tab="privacy">adatkezelési tájékoztató</a> tartalmazza. <span class="req">*</span></span>
+          </label>
+        </div>
+        <button type="submit" class="submit-btn">Beküldöm a rajzot →</button>
+      </form>
+    </div>
+
+    <div id="csoportos-form" class="form-card" style="display:none;">
+      <h2>Csoportos benevezés — ovis csoport vagy iskolai osztály</h2>
+      <p class="sub">A pedagógus tölti ki az intézmény nevében.</p>
+      <form onsubmit="handleSubmit(event, 'csoportos')">
+        <div class="field">
+          <label>Intézmény neve <span class="req">*</span></label>
+          <input type="text" name="institution_name" required>
+        </div>
+        <div class="field">
+          <label>Csoport / osztály neve <span class="req">*</span></label>
+          <input type="text" name="group_name" required>
+        </div>
+        <div class="field">
+          <label>Város <span class="req">*</span></label>
+          <input type="text" name="city" required>
+        </div>
+        <div class="field">
+          <label>Pedagógus e-mail-címe <span class="req">*</span></label>
+          <input type="email" name="email" required>
+          <p class="hint">Ide küldjük az eredményt és az okleveleket.</p>
+        </div>
+        <div class="field">
+          <label>A rajzok fotói <span class="req">*</span></label>
+          <input type="file" name="drawings" accept="image/jpeg,image/png" multiple required>
+          <p class="hint">Több fájl is feltölthető — jpg vagy png, max. 10 MB / fotó.</p>
+        </div>
+        <div class="checkbox-group">
+          <label class="checkbox-option">
+            <input type="checkbox" required>
+            <span>Elolvastam és elfogadom a <a href="#" class="legal-link" data-tab="terms">részvételi feltételeket</a> és az adatkezelési tájékoztatót, és hozzájárulok, hogy a beküldött rajzok a szervezők kommunikációs felületein megjelenjenek. <span class="req">*</span></span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" required>
+            <span>Szeretnék hírlevelet kapni a MyFarm Kertek újdonságairól. Az adatkezelés részleteit az <a href="#" class="legal-link" data-tab="privacy">adatkezelési tájékoztató</a> tartalmazza. <span class="req">*</span></span>
+          </label>
+        </div>
+        <button type="submit" class="submit-btn">Beküldöm a rajzokat →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIZERS -->
+<section>
+  <div class="container">
+    <h2>A pályázat szervezői</h2>
+    <p class="section-intro">Hárman fogtunk össze, mert mindannyian szülők is vagyunk — pontosan tudjuk, milyen jó érzés, amikor van egy értelmes, közös program a gyerekekkel. Ezért hoztuk létre együtt ezt a kezdeményezést.</p>
+    <div class="org-grid">
+
+      <div class="org-card">
+        <div class="org-logo">
+          <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-label="MyFarm">
+            <path d="M 41 11 A 22 22 0 1 1 19 11" fill="none" stroke="#217A1E" stroke-width="4.5" stroke-linecap="round"/>
+            <line x1="30" y1="48" x2="30" y2="6" stroke="#758C2E" stroke-width="2" stroke-linecap="round"/>
+            <g fill="#FDCC2E">
+              <ellipse cx="25" cy="14" rx="2" ry="4.5" transform="rotate(-25 25 14)"/>
+              <ellipse cx="35" cy="14" rx="2" ry="4.5" transform="rotate(25 35 14)"/>
+              <ellipse cx="23" cy="22" rx="2" ry="4.5" transform="rotate(-25 23 22)"/>
+              <ellipse cx="37" cy="22" rx="2" ry="4.5" transform="rotate(25 37 22)"/>
+              <ellipse cx="23" cy="30" rx="2" ry="4.5" transform="rotate(-25 23 30)"/>
+              <ellipse cx="37" cy="30" rx="2" ry="4.5" transform="rotate(25 37 30)"/>
+              <ellipse cx="25" cy="38" rx="2" ry="4.5" transform="rotate(-25 25 38)"/>
+              <ellipse cx="35" cy="38" rx="2" ry="4.5" transform="rotate(25 35 38)"/>
+            </g>
+            <text x="72" y="40" font-family="'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive" font-size="32" fill="#474747" font-weight="700" font-style="italic">MyFarm</text>
+          </svg>
+        </div>
+        <div class="org-name">MyFarm Kertek</div>
+        <p class="org-desc">Mi termesztjük a zöldséget, amit a gyerekek a rajzon ábrázolnak. Hisszük, hogy a természettel való kapcsolat már kiskorban elkezdődik — akár egy rajzon is.</p>
+        <a href="https://myfarmharta.com" target="_blank" rel="noopener">myfarmharta.com →</a>
+      </div>
+
+      <div class="org-card">
+        <div class="org-logo">
+          <svg viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg" aria-label="Gardena Magyarország">
+            <text x="110" y="40" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1a1a1a" font-weight="900" text-anchor="middle" letter-spacing="2.5">GARDENA</text>
+          </svg>
+        </div>
+        <div class="org-name">Gardena Magyarország</div>
+        <p class="org-desc">Mi adjuk a szerszámokat, amivel egyszer majd ők is kapálnak — és az öntözőrendszert, amivel az egész csoport együtt gondozhatja az első kertjét.</p>
+      </div>
+
+      <div class="org-card">
+        <div class="org-logo">
+          <svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" aria-label="Sablonmentes.hu">
+            <g transform="translate(28, 30)">
+              <g fill="#F47521">
+                <ellipse cx="0" cy="-18" rx="4" ry="9"/>
+                <ellipse cx="13" cy="-13" rx="4" ry="9" transform="rotate(45 13 -13)"/>
+                <ellipse cx="18" cy="0" rx="9" ry="4"/>
+                <ellipse cx="13" cy="13" rx="4" ry="9" transform="rotate(-45 13 13)"/>
+                <ellipse cx="0" cy="18" rx="4" ry="9"/>
+                <ellipse cx="-13" cy="13" rx="4" ry="9" transform="rotate(45 -13 13)"/>
+                <ellipse cx="-18" cy="0" rx="9" ry="4"/>
+                <ellipse cx="-13" cy="-13" rx="4" ry="9" transform="rotate(-45 -13 -13)"/>
+              </g>
+              <circle r="9" fill="#F47521"/>
+            </g>
+            <text x="62" y="38" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#1a1a1a" font-weight="700">Sablonmentes.hu</text>
+          </svg>
+        </div>
+        <div class="org-name">Sablonmentes.hu</div>
+        <p class="org-desc">Sokan Okos Timiként ismerik. Hisszük, hogy egy pályázat is lehet személyes és meleg — nem csak szabályok gyűjteménye, hanem valódi közös élmény.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="cream-alt">
+  <div class="container">
+    <h2>Gyakori kérdések</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Milyen technikával lehet rajzolni?</summary>
+        <div>Bármivel! Ceruza, zsírkréta, filctoll, festék, akvarell — nincs kötöttség. A lényeg az alkotás öröme.</div>
+      </details>
+      <details>
+        <summary>Egy gyerek hány rajzot küldhet be?</summary>
+        <div>Egyéni kategóriában gyerekenként egy rajzot fogadunk el.</div>
+      </details>
+      <details>
+        <summary>Csoportos kategóriában hány rajzot küldhetünk be?</summary>
+        <div>Annyi rajzot küldhetsz be, amennyit a csoport / osztály készített — de csoportonként egy nyeremény van.</div>
+      </details>
+      <details>
+        <summary>Mi van, ha a fotó nem elég éles?</summary>
+        <div>Törekedj arra, hogy a rajz jól látható legyen. Természetes fényben készített fotó a legjobb.</div>
+      </details>
+      <details>
+        <summary>Visszavonhatom a hozzájárulásomat?</summary>
+        <div>Igen, bármikor. Írj a <a href="mailto:hello@myfarmharta.com" style="color:var(--green); font-weight:600;">hello@myfarmharta.com</a> címre és töröljük az adataidat.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing">
+  <div class="container narrow">
+    <h2>Ne hagyd ki — május 31-ig lehet benevezni!</h2>
+    <p class="body-text">Fogd a gyereket, adjatok neki egy ceruzát — vagy filctollat, vagy ecsetet, mindegy — és rajzoljatok egy kicsit együtt ma este.
+
+Vagy szólj holnap a csoportodnak, az osztályodnak — és csináljátok meg együtt.
+
+Nem kell tökéletesnek lennie. Csak közösnek.</p>
+    <div class="cta-row">
+      <a href="#egyeni-form" class="btn btn-primary">Benevezem a gyerekemet most</a>
+      <a href="#csoportos-form" class="btn btn-secondary">Benevezem a csoportomat most</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Tavaszi Kert Rajzpályázat — szervezők: MyFarm Kertek, Gardena Magyarország, Sablonmentes.hu</p>
+    <p style="margin-top:8px;">Kérdésed van? Írj nekünk: <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a></p>
+  </div>
+</footer>
+
+<!-- LEGAL MODAL (lapozható: Részvételi feltételek + Adatkezelési tájékoztató) -->
+<div id="legal-modal" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-tabs" role="tablist">
+        <button type="button" class="modal-tab" data-tab="terms" role="tab">📋 Részvételi feltételek</button>
+        <button type="button" class="modal-tab" data-tab="privacy" role="tab">🔒 Adatkezelési tájékoztató</button>
+      </div>
+      <button type="button" class="modal-close" aria-label="Bezárás">×</button>
+    </div>
+
+    <div class="modal-content">
+
+      <!-- TERMS PANE -->
+      <div class="modal-pane" data-pane="terms" id="legal-modal-title">
+        <h3 class="legal-title">Tavaszi Kert Rajzpályázat 2026</h3>
+        <p class="legal-subtitle">Részvételi feltételek</p>
+
+        <h4>1. A pályázat szervezői</h4>
+        <p>A pályázatot a MyFarm Kertek, a Gardena Magyarország és a Sablonmentes közösen szervezi.</p>
+        <p>Kapcsolat: <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a></p>
+
+        <h4>2. A pályázat célja</h4>
+        <p>A pályázat célja, hogy a gyerekeket a természet, a kertészkedés és a zöldségtermesztés témájával ismertesse meg rajzos alkotásokon keresztül.</p>
+
+        <h4>3. A pályázat témája</h4>
+        <p>Tavaszi zöldségek és tavaszi kert — a gyerekek szabadon ábrázolhatják a kert világát, kedvenc zöldségüket, vagy bármi mást, ami a tavaszi kerthez kapcsolódik.</p>
+
+        <h4>4. Részvételi kategóriák</h4>
+        <p>A pályázat három korcsoportra oszlik:</p>
+        <ul>
+          <li><strong>Pöttöm kategória:</strong> óvodások</li>
+          <li><strong>Kis alkotók kategória:</strong> 1–3. osztályos tanulók</li>
+          <li><strong>Nagymenők kategória:</strong> 4–6. osztályos tanulók</li>
+        </ul>
+
+        <h4>5. Ki vehet részt?</h4>
+        <p>A pályázaton Magyarország területén élő, óvodás vagy általános iskolás korú (3–12 éves) gyerekek vehetnek részt szülői / törvényes képviselői hozzájárulással.</p>
+        <p>A pályázatra beküldött alkotás az adott gyermek saját, önálló munkája kell, hogy legyen.</p>
+
+        <h4>6. A rajz beküldésének módja</h4>
+        <p>A pályázatra az erre a célra kialakított online felületen keresztül lehet jelentkezni. A jelentkezés során meg kell adni:</p>
+        <ul>
+          <li>a gyermek nevét és korát / évfolyamát</li>
+          <li>a szülő / törvényes képviselő nevét és e-mail-címét</li>
+          <li>a rajz fotóját (feltöltve a felületre)</li>
+        </ul>
+        <p>A rajzot jól megvilágított, éles fotón kell beküldeni. A papír mérete és az alkalmazott technika (ceruza, zsírkréta, festék stb.) kötetlen.</p>
+
+        <h4>7. Határidők</h4>
+        <p><strong>Beküldési határidő:</strong> 2026. május 31. éjfél</p>
+        <p><strong>Eredményhirdetés:</strong> 2026. június 1.</p>
+
+        <h4>8. Díjak</h4>
+        <p>Kategóriánként egy győztes kerül kisorsolásra / megválasztásra:</p>
+        <ul>
+          <li><strong>Pöttöm kategória:</strong> Gardena kiskertészeknek szóló csomag</li>
+          <li><strong>Kis alkotók kategória:</strong> Zöldségdzsungel memóriakártya</li>
+          <li><strong>Nagymenők kategória:</strong> MyFarm zöldségláda</li>
+        </ul>
+        <p>A szervezők fenntartják a jogot, hogy különdíjat is adjanak ki.</p>
+
+        <h4>9. Zsűrizés</h4>
+        <p>A beérkezett alkotásokat a szervezők értékelik. Az eredményt 2026. június 1-jén hirdetik meg a szervezők közösségi oldalain.</p>
+
+        <h4>10. A pályázaton való részvétel feltételei</h4>
+        <p>A pályázaton való részvétellel a szülő / törvényes képviselő elfogadja a részvételi feltételeket és az adatkezelési tájékoztatót, és hozzájárul ahhoz, hogy a beküldött rajz a szervezők közösségi oldalain és egyéb kommunikációs felületein megjelenjen (a gyermek neve és a szülő e-mail-címe nélkül).</p>
+
+        <h4>11. Egyéb rendelkezések</h4>
+        <p>A szervezők fenntartják a jogot a pályázati feltételek módosítására, valamint a pályázat visszavonására. A pályázaton beküldött rajzok nem kerülnek visszaküldésre.</p>
+        <p>A pályázattal kapcsolatos kérdéseket a <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a> e-mail-címre lehet küldeni.</p>
+
+        <p class="legal-footer">MyFarm Kertek · Gardena Magyarország · Sablonmentes · 2026</p>
+      </div>
+
+      <!-- PRIVACY PANE -->
+      <div class="modal-pane" data-pane="privacy" hidden>
+        <h3 class="legal-title">Tavaszi Kert Rajzpályázat 2026</h3>
+        <p class="legal-subtitle">Adatkezelési tájékoztató és GDPR-nyilatkozat</p>
+
+        <h4>1. Az adatkezelő</h4>
+        <p><strong>Adatkezelő:</strong> MyFarm Kertek</p>
+        <p><strong>E-mail:</strong> <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a></p>
+        <p><strong>Weboldal:</strong> www.myfarmharta.com</p>
+
+        <h4>2. Kezelt személyes adatok</h4>
+        <p>A pályázatra való jelentkezés során az alábbi személyes adatokat gyűjtjük:</p>
+        <ul>
+          <li>szülő / törvényes képviselő neve</li>
+          <li>szülő / törvényes képviselő e-mail-címe</li>
+          <li>a gyermek keresztneve és kora / évfolyama</li>
+          <li>a beküldött rajz fotója</li>
+        </ul>
+        <p>A beküldött rajzon szereplő képi adatok nem minősülnek személyes adatnak, amennyiben azok alapján az érintett nem azonosítható.</p>
+
+        <h4>3. Az adatkezelés célja</h4>
+        <p>A megadott személyes adatokat az alábbi célokra használjuk fel:</p>
+        <ul>
+          <li>a pályázatra való részvétel lebonyolítása (kategóriába sorolás, eredményhirdetés)</li>
+          <li>a nyertessel való kapcsolatfelvétel és a díj átadásának megszervezése</li>
+          <li>hírlevél küldése a pályázattal és a szervezők tevékenységével kapcsolatos információkról (kizárólag külön hozzájárulás esetén)</li>
+        </ul>
+
+        <h4>4. Az adatkezelés jogalapja</h4>
+        <p>Az adatkezelés jogalapja az érintett önkéntes hozzájárulása (GDPR 6. cikk (1) bekezdés a) pont). A hozzájárulás a jelentkezési űrlapon található jelölőnégyzet bejelölésével adható meg.</p>
+        <p>A hírlevél-feliratkozás jogalapja szintén az érintett önkéntes, kifejezett hozzájárulása.</p>
+
+        <h4>5. Adatmegőrzési idő</h4>
+        <p>A pályázathoz kapcsolódó adatokat a pályázat lezárultától (2026. június 1.) számított 1 évig őrizzük meg, ezt követően töröljük azokat.</p>
+        <p>Amennyiben a szülő / törvényes képviselő hozzájárult a hírlevél fogadásához, az e-mail-címet a hozzájárulás visszavonásáig tároljuk.</p>
+
+        <h4>6. Adattovábbítás</h4>
+        <p>Az adatokat harmadik félnek nem adjuk át, kivéve a társszervező partnereket (Gardena Magyarország, Sablonmentes), akik szintén kötelesek az adatokat bizalmasan kezelni.</p>
+        <p>Az adatok feldolgozásához az alábbi adatfeldolgozókat vehetjük igénybe: e-mail-küldő szolgáltatás (pl. Mailchimp / Brevo), online űrlap-szolgáltató (pl. Google Forms / Typeform). Az adatfeldolgozók az adatokat kizárólag az adatkezelő utasításai szerint kezelhetik.</p>
+
+        <h4>7. Az érintett jogai</h4>
+        <p>A szülő / törvényes képviselő az alábbi jogokat gyakorolhatja:</p>
+        <ul>
+          <li><strong>Hozzáférési jog:</strong> tájékoztatást kérhet a kezelt adatokról.</li>
+          <li><strong>Helyesbítési jog:</strong> kérheti a pontatlan adatok javítását.</li>
+          <li><strong>Törlési jog (elfeledtetéshez való jog):</strong> kérheti adatai törlését.</li>
+          <li><strong>Adathordozhatóság joga:</strong> kérheti adatai géppel olvasható formátumban való kiadását.</li>
+          <li><strong>Tiltakozási jog:</strong> tiltakozhat az adatkezelés ellen.</li>
+          <li><strong>Hozzájárulás visszavonásának joga:</strong> a hozzájárulást bármikor visszavonhatja a hello@myfarmharta.com e-mail-címre küldött kéréssel.</li>
+        </ul>
+        <p>A jogok gyakorlásához kérelmet a <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a> e-mail-címre lehet küldeni. A kérelemre 30 napon belül válaszolunk.</p>
+
+        <h4>8. Jogorvoslat</h4>
+        <p>Amennyiben az érintett úgy véli, hogy adatait jogellenesen kezeljük, panaszt nyújthat be a Nemzeti Adatvédelmi és Információszabadság Hatósághoz (NAIH):</p>
+        <p><strong>Cím:</strong> 1055 Budapest, Falk Miksa utca 9–11.<br>
+           <strong>Weboldal:</strong> www.naih.hu<br>
+           <strong>E-mail:</strong> <a href="mailto:ugyfelszolgalat@naih.hu">ugyfelszolgalat@naih.hu</a></p>
+
+        <p class="legal-footer">MyFarm Kertek · Gardena Magyarország · Sablonmentes · 2026</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  //  CONFIG — ezt a két dolgot kell beállítani:
+  //  1. APPS_SCRIPT_URL: a deployolt Google Apps Script Web App URL-je
+  //     (lásd SETUP.md a részletekért)
+  //  2. A Sheet ID-t és a Folder ID-t magában az Apps Script kódban
+  //     kell beállítani (Code.gs)
+  // ============================================================
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzav_XjTO15Gmw3WtbM0jhsGiZ90IG7yhGH9bKkjDESFFByVjM6DTqNgS1ZGh_Dsatd/exec';
+  const MAX_TOTAL_UPLOAD_MB = 40; // védelem nagyon nagy csomagok ellen
+
+  // Tab switching for "How it works"
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const flow = btn.dataset.flow;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.flow-steps').forEach(s => s.classList.toggle('active', s.dataset.flow === flow));
+    });
+  });
+
+  // ---- Lapozható modal (Részvételi feltételek + Adatkezelési tájékoztató) ----
+  function openLegalModal(tab) {
+    const modal = document.getElementById('legal-modal');
+    if (!modal) return;
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    switchModalTab(tab || 'terms');
+  }
+  function closeLegalModal() {
+    const modal = document.getElementById('legal-modal');
+    if (!modal) return;
+    modal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  }
+  function switchModalTab(tab) {
+    document.querySelectorAll('.modal-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.tab === tab);
+    });
+    document.querySelectorAll('.modal-pane').forEach(p => {
+      if (p.dataset.pane === tab) p.removeAttribute('hidden');
+      else p.setAttribute('hidden', '');
+    });
+    const content = document.querySelector('.modal-content');
+    if (content) content.scrollTop = 0;
+  }
+
+  // Tab gombok
+  document.querySelectorAll('.modal-tab').forEach(t => {
+    t.addEventListener('click', () => switchModalTab(t.dataset.tab));
+  });
+
+  // Bezárás: X gomb, overlay-re kattintás, Escape billentyű
+  const modalCloseBtn = document.querySelector('.modal-close');
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeLegalModal);
+  const modalOverlay = document.getElementById('legal-modal');
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (ev) => {
+      if (ev.target.id === 'legal-modal') closeLegalModal();
+    });
+  }
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape') closeLegalModal();
+  });
+
+  // Checkbox-feliratokban lévő linkek elfogása —
+  // ne pipálja át a checkbox-ot, csak a modalt nyissa meg
+  document.querySelectorAll('.legal-link').forEach(link => {
+    link.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      openLegalModal(link.dataset.tab);
+    });
+  });
+
+  // ---- Form-választó (chooser) logika ----
+  function selectFormType(type) {
+    document.querySelectorAll('.choice-card').forEach(c => {
+      c.classList.toggle('active', c.dataset.choice === type);
+    });
+    const egyeni = document.getElementById('egyeni-form');
+    const csoportos = document.getElementById('csoportos-form');
+    if (egyeni) egyeni.style.display = (type === 'egyeni') ? 'block' : 'none';
+    if (csoportos) csoportos.style.display = (type === 'csoportos') ? 'block' : 'none';
+
+    // Gördítsünk a megjelenített formhoz
+    setTimeout(() => {
+      const target = (type === 'egyeni') ? egyeni : csoportos;
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+
+  // Chooser kártyák kattintáskezelése
+  document.querySelectorAll('.choice-card').forEach(card => {
+    card.addEventListener('click', () => selectFormType(card.dataset.choice));
+  });
+
+  // CTA linkek (pl. „Benevezem a gyerekemet") elfogása —
+  // a megfelelő formot előre kiválasztják + odagördítenek
+  document.querySelectorAll('a[href="#egyeni-form"], a[href="#csoportos-form"]').forEach(link => {
+    link.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const type = link.getAttribute('href') === '#egyeni-form' ? 'egyeni' : 'csoportos';
+      selectFormType(type);
+    });
+  });
+
+  // Ha az URL-ben már form-hash van betöltéskor, válasszuk ki előre
+  if (window.location.hash === '#egyeni-form') {
+    selectFormType('egyeni');
+  } else if (window.location.hash === '#csoportos-form') {
+    selectFormType('csoportos');
+  }
+
+  // ---- Helper: olvasd be a fájlt base64-ként ----
+  function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64 = reader.result.split(',')[1]; // "data:image/jpeg;base64,..." -> csak a base64 rész
+        resolve({ base64, mimeType: file.type || 'image/jpeg', name: file.name });
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // ---- Hibajelzés a form tetején ----
+  function showError(form, message) {
+    let box = form.querySelector('.form-error');
+    if (!box) {
+      box = document.createElement('div');
+      box.className = 'form-error';
+      box.style.cssText = 'background:#fef2f2; color:#b91c1c; padding:14px 18px; border-radius:10px; margin-bottom:18px; font-size:14px; border:1px solid #fecaca; line-height:1.5;';
+      form.prepend(box);
+    }
+    box.textContent = '❌ ' + message;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ---- Sikeres beküldés képernyő ----
+  function showSuccess(form, serial) {
+    const card = form.closest('.form-card');
+    card.innerHTML = `
+      <div style="text-align:center; padding: 36px 16px;">
+        <div style="font-size: 72px; margin-bottom: 16px;">🌻</div>
+        <h2 style="text-align:center; margin-bottom: 12px;">Köszönjük a benevezést!</h2>
+        <p style="font-size: 16px; color: var(--text-soft); margin: 12px 0 8px;">A pályázatod sorszáma:</p>
+        <div style="font-size: 36px; font-weight: 800; color: var(--green-deep); background: var(--sun-soft); padding: 14px 28px; border-radius: 14px; display: inline-block; margin: 8px 0 24px; letter-spacing: 0.05em;">#${serial}</div>
+        <p style="color: var(--text-soft); max-width: 480px; margin: 0 auto; line-height: 1.6;">
+          Hamarosan e-mailben visszajelzünk. Eredményhirdetés: <strong style="color: var(--green-deep);">2026. június 1.</strong>
+        </p>
+      </div>
+    `;
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ---- Form beküldés ----
+  async function handleSubmit(e, type) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+
+    // Konfig-ellenőrzés
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('PASTE_YOUR')) {
+      showError(form, 'A backend URL nincs még beállítva. Kérlek nézd meg a SETUP.md fájlt.');
+      return;
+    }
+
+    // Régi hibaüzenet törlése
+    const oldError = form.querySelector('.form-error');
+    if (oldError) oldError.remove();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '⏳ Küldés folyamatban...';
+
+    try {
+      // Fájlok összegyűjtése + méret-ellenőrzés
+      const fileInput = form.querySelector('input[type="file"]');
+      const files = Array.from(fileInput.files);
+      if (files.length === 0) throw new Error('Legalább egy rajzot fel kell tölteni.');
+
+      const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
+      if (totalBytes > MAX_TOTAL_UPLOAD_MB * 1024 * 1024) {
+        throw new Error(`A feltöltött képek összmérete túl nagy (max. ${MAX_TOTAL_UPLOAD_MB} MB). Kérjük csökkentsd a felbontást vagy küldd kisebb csomagokban.`);
+      }
+
+      submitBtn.textContent = `⏳ Képek beolvasása (${files.length} db)...`;
+      const filePayload = await Promise.all(files.map(readFileAsBase64));
+
+      // Egyéb mezők
+      const formData = new FormData(form);
+      const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+
+      const payload = {
+        type: type,
+        child_name: formData.get('child_name') || '',
+        category: formData.get('category') || '',
+        institution_name: formData.get('institution_name') || '',
+        group_name: formData.get('group_name') || '',
+        city: formData.get('city') || '',
+        email: formData.get('email') || '',
+        terms_accepted: checkboxes[0]?.checked || false,
+        newsletter: checkboxes[1]?.checked || false,
+        files: filePayload
+      };
+
+      submitBtn.textContent = '⏳ Beküldés a szervernek...';
+
+      // POST a Google Apps Scripthez
+      // text/plain Content-Type -> nem trigger CORS preflightot, simán átmegy
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+        redirect: 'follow'
+      });
+
+      if (!response.ok) {
+        throw new Error(`Szerver hiba: HTTP ${response.status}`);
+      }
+
+      const result = await response.json();
+      if (!result.success) {
+        throw new Error(result.error || 'Ismeretlen szerverhiba');
+      }
+
+      showSuccess(form, result.serial);
+    } catch (err) {
+      console.error(err);
+      showError(form, `Hiba a beküldés során: ${err.message}. Kérjük próbáld újra, vagy írj a hello@myfarmharta.com címre.`);
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  }
+</script>
+
+</body>
+</html>
