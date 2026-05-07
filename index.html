@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tavaszi Kert Rajzpályázat 2025 — MyFarm × Gardena × Sablonmentes</title>
-<meta name="description" content="Rajzpályázat óvodásoknak és kisiskolásoknak. Rajzolj egy tavaszi kertet — és nyerj egyet! Benevezés 2025. május 11–31.">
+<title>Tavaszi Kert Rajzpályázat 2026 — MyFarm × Gardena × Sablonmentes</title>
+<meta name="description" content="Rajzpályázat óvodásoknak és kisiskolásoknak. Rajzolj egy tavaszi kertet — és nyerj egyet! Benevezés 2026. május 13–31.">
 <style>
   :root {
     --green-deep: #2d5a3d;
@@ -676,6 +676,159 @@
     .choice-card .choice-icon { font-size: 44px; }
   }
 
+  /* ---------- MODAL (lapozható nyilatkozatok) ---------- */
+  .checkbox-option a {
+    color: var(--green-deep);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .checkbox-option a:hover { color: var(--green); }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(45, 90, 61, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: modalFade 0.2s ease-out;
+  }
+  .modal-overlay[hidden] { display: none; }
+
+  @keyframes modalFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes modalSlide {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-box {
+    background: white;
+    border-radius: 18px;
+    max-width: 760px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.32);
+    animation: modalSlide 0.25s ease-out;
+  }
+  .modal-header {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+    flex-shrink: 0;
+  }
+  .modal-tabs {
+    display: flex;
+    flex: 1;
+    gap: 0;
+  }
+  .modal-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 16px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-soft);
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .modal-tab:hover { color: var(--green-deep); background: rgba(255,255,255,0.5); }
+  .modal-tab.active {
+    color: var(--green-deep);
+    border-bottom-color: var(--green-deep);
+    background: white;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    padding: 0 22px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-soft);
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--carrot); }
+
+  .modal-content {
+    overflow-y: auto;
+    padding: 30px 36px 28px;
+    flex: 1;
+  }
+  .modal-pane[hidden] { display: none; }
+  .modal-pane h3.legal-title {
+    font-size: 22px;
+    text-align: center;
+    margin: 0 0 4px;
+    color: var(--green-deep);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .modal-pane .legal-subtitle {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+    font-style: italic;
+  }
+  .modal-pane h4 {
+    font-size: 16px;
+    margin: 22px 0 8px;
+    color: var(--green-deep);
+    font-weight: 700;
+  }
+  .modal-pane h4:first-of-type { margin-top: 0; }
+  .modal-pane p {
+    margin-bottom: 9px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .modal-pane ul {
+    margin: 4px 0 12px 22px;
+    padding: 0;
+  }
+  .modal-pane ul li {
+    margin-bottom: 6px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .modal-pane a {
+    color: var(--green-deep);
+    text-decoration: underline;
+  }
+  .modal-pane .legal-footer {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 13px;
+    margin-top: 26px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+  }
+  @media (max-width: 640px) {
+    .modal-content { padding: 22px 20px; }
+    .modal-tab { padding: 13px 10px; font-size: 12.5px; }
+    .modal-close { padding: 0 14px; font-size: 24px; }
+    .modal-pane h3.legal-title { font-size: 19px; }
+  }
+
   /* ---------- ORGANIZERS ---------- */
   .org-grid {
     display: grid;
@@ -824,26 +977,18 @@
 </head>
 <body>
 
-<nav>
-  <div class="container nav-inner">
-    <div class="logo">🌱 Tavaszi Kert Rajzpályázat</div>
-    <a href="#benevezes" class="nav-cta">Benevezek</a>
-  </div>
-</nav>
-
 <!-- HERO -->
 <header class="hero">
   <div class="container">
-    <span class="hero-badge">📅 Benevezés: május 11–31.</span>
-    <h1>Rajzolj egy tavaszi kertet — <span class="accent">és nyerj egyet!</span></h1>
-    <p class="subhead">Rajzpályázat óvodásoknak és kisiskolásoknak — egyénileg vagy egész csoporttal. Mert a legjobb tanítás az, amelyiket játéknak érzi a gyerek.</p>
-    <p class="body-text">Mi is szülők vagyunk. Tudjuk, milyen az, amikor keresed azt az egy délutáni programot, ami nem képernyő, mégis le tudja kötni a gyereket. Ami közben tanul valamit — de erről ő nem vesz észre semmit, mert annyira jó mókának tűnik.
+    <h1>Rajzoljatok, alkossatok együtt, <span class="accent">és közben nyerjetek!</span></h1>
+    <p class="subhead">Rajzpályázat óvodásoknak és kisiskolásoknak.</p>
+    <p class="body-text">A Gardena csapatával és a Sablonmentes.hu-val, akit sokan Okos Timiként ismertek, közösen indítunk egy rajzpályázatot gyerkőcöknek.
 
-Ezért csináljuk ezt a pályázatot.
+Mi is szülők vagyunk, ezért pontosan tudjuk, milyen jó, amikor van egy program, ami egyszerre kreatív, közös élmény és még a gyerekeket is leköti egy kis időre. Most erre hívunk benneteket is.
 
-Fogj egy ceruzát, filctollat vagy ecsetet, ülj le a gyerek mellé, és rajzoljatok együtt egy tavaszi kertet, veteményest vagy kedvenc zöldséget. Vagy szólj a csoportodnak, az osztályodnak — és rajzoljatok együtt.
+Szeretnénk, hogy minél több gyerek értse, hogyan működik a természet, és hogy a zöldség ne egy „kötelező rossz" legyen, hanem valami, ami szupererőt ad a mindennapokhoz.
 
-A többit mi intézzük.</p>
+Rajzoljatok egy tavaszi kertet, veteményest vagy a kedvenc zöldségeteket otthon, az oviban vagy akár az iskolában. Lehet egyéni alkotás, de akár közös csoportmunka is. A lényeg, hogy együtt alkossatok, érezzétek jól magatokat, és közben még nyerhettek is.</p>
     <div class="cta-row">
       <a href="#egyeni-form" class="btn btn-primary">Benevezem a gyerekemet</a>
       <a href="#csoportos-form" class="btn btn-secondary">Benevezem a csoportomat / osztályomat</a>
@@ -856,54 +1001,68 @@ A többit mi intézzük.</p>
   <div class="container">
     <h2>Te is így vagy vele?</h2>
     <div class="card-list">
-      <div class="card"><span class="icon">🌱</span>Keresed, mivel töltsetek el együtt egy délutánt — valami olyasmivel, ami nem képernyő és tényleg leköti.</div>
-      <div class="card"><span class="icon">🥕</span>Szeretnéd, ha a gyereked kicsit közelebb kerülne a természethez — de nem akarsz előadást tartani róla.</div>
-      <div class="card"><span class="icon">🎨</span>Örülnél egy közös alkotós programnak — ahol nincs helyes vagy helytelen, csak a közös élmény számít.</div>
-      <div class="card"><span class="icon">🏫</span>Pedagógusként keresed azt a projektet, ami az egész csoportot / osztályt megmozgatja — és ami után marad valami kézzelfogható emlék.</div>
-      <div class="card"><span class="icon">🏆</span>Jó lenne, ha a gyerekek látnák, hogy amit csinálnak, az számít valaminek — hogy büszkék lehessenek magukra.</div>
+      <div class="card"><span class="icon">🌱</span>Jó lenne végre egy olyan közös program, ami nem a képernyő előtt telik, mégis órákra leköti a gyerekeket és célt ad neki.</div>
+      <div class="card"><span class="icon">🥕</span>Szeretnéd, ha a gyereked közelebb kerülne a természethez, és úgy tanulna a zöldségekről, hogy közben észre sem veszi.</div>
+      <div class="card"><span class="icon">🏫</span>Pedagógusként keresel egy kreatív projektet, ami az egész csoportot vagy osztályt megmozgatja, és amire még napokkal később is büszkén emlékeznek majd.</div>
+      <div class="card"><span class="icon">🏆</span>Jó lenne, ha a gyerekek megélnék, hogy amit készítenek, annak értéke van. Hogy büszkén mutathassák meg: „ezt én rajzoltam".</div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT + DÍJAK (összevonva) -->
 <section>
-  <div class="container narrow">
-    <h2>Mi ez az egész?</h2>
-    <p class="about-body">Nem egy nagy cég találta ki ezt. Három csapat ült össze — és mindhármunknak van otthon gyerek. Pontosan tudjuk, milyen az, amikor azt akarod, hogy a gyerekedet valami megmozgassa — de közben mégis csak játszon.
+  <div class="container">
+    <div style="max-width: 760px; margin: 0 auto 36px;">
+      <h2>Miért csináljuk ezt az egészet?</h2>
+      <p class="about-body">Hisszük, hogy a gyerekek akkor tanulnak a legtöbbet, amikor közben jól érzik magukat.
 
-A <strong>MyFarm Kertek</strong>, a <strong>Gardena Magyarország</strong> és a <strong>Sablonmentes.hu</strong> közösen hirdeti meg az első Tavaszi Kert Rajzpályázatot.
+Szülőként mi is pontosan tudjuk, milyen nehéz néha olyan programot találni, ami egyszerre kreatív, közös élmény és nem a képernyő körül forog. Olyat, ami egy kicsit közelebb viszi őket a természethez, az alkotáshoz és egymáshoz is.
 
-Benevezhet egyénileg bármely 3–12 éves gyerek — de benevezhet egész ovis csoport vagy iskolai osztály is, a pedagógus vezetésével.
+Ezért fogott össze a <strong>MyFarm Kertek</strong>, a <strong>Gardena Magyarország</strong> és a <strong>Sablonmentes.hu</strong>, hogy közösen elindítsuk a Tavaszi Kert Rajzpályázatot.
 
-Négy kategóriában, négy nyeremény — és egy csomó büszke gyerek június 1-jén. 🌻</p>
+A pályázatra bármely 3–12 éves gyerek jelentkezhet egyénileg, de akár egész óvodai csoportok és iskolai osztályok is csatlakozhatnak pedagógus vezetésével.
 
-    <div class="categories">
-      <div class="cat-card">
-        <span class="cat-icon">🐾</span>
-        <div class="cat-label">Pöttöm</div>
-        <div class="cat-age">3–5 év</div>
-        <span class="cat-tag">Egyéni</span>
+Nem a tökéletes rajzot keressük. Hanem azokat az alkotásokat, amik mögött ott van a fantázia, a közös élmény és egy kis szeretet is.</p>
+    </div>
+
+    <div style="max-width: 760px; margin: 0 auto 32px;">
+      <p class="about-body">Mind a négy kategóriában nyertest hirdetünk.
+
+A három egyéni kategória nyertesei MyFarm finomságokat, Gardena kerti eszközöket és Zöldségdzsungel memóriajátékot is kapnak ajándékba.
+
+Az óvodai és iskolai kategória nyertese pedig az apró meglepetések mellett egy <strong>Gardena Micro-Drip-System indulókészletet</strong> is kap magaságyásokhoz és veteményesekhez, hogy még könnyebb legyen saját kis kertet kialakítani az intézményben.</p>
+    </div>
+
+    <div class="prize-grid">
+      <div class="prize-card">
+        <span class="pi">🌱</span>
+        <div class="ptitle">Gardena kiskertészeknek szóló csomag</div>
+        <div class="pdesc">Igazi kis kertészszerszámok a legkisebbeknek — hogy a rajzból egyszer valóság legyen.</div>
+        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">PÖTTÖM • 3–5 ÉV</p>
       </div>
-      <div class="cat-card">
-        <span class="cat-icon">🌿</span>
-        <div class="cat-label">Kis alkotók</div>
-        <div class="cat-age">6–8 év</div>
-        <span class="cat-tag">Egyéni</span>
+      <div class="prize-card">
+        <span class="pi">🃏</span>
+        <div class="ptitle">Zöldségdzsungel memóriakártya</div>
+        <div class="pdesc">Játék, ami közben észrevétlenül tanulnak is — pont ilyen ez az egész pályázat.</div>
+        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">KIS ALKOTÓK • 6–8 ÉV</p>
       </div>
-      <div class="cat-card">
-        <span class="cat-icon">🌻</span>
-        <div class="cat-label">Nagymenők</div>
-        <div class="cat-age">9–12 év</div>
-        <span class="cat-tag">Egyéni</span>
+      <div class="prize-card">
+        <span class="pi">📦</span>
+        <div class="ptitle">MyFarm zöldségláda</div>
+        <div class="pdesc">Friss, vegyszermentes zöldségek egyenesen a kertből — mert a nagymenőknek nagymenő díj jár.</div>
+        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">NAGYMENŐK • 9–12 ÉV</p>
       </div>
-      <div class="cat-card">
-        <span class="cat-icon">🏫</span>
-        <div class="cat-label">Közös kert</div>
-        <div class="cat-note">Ovis csoport vagy iskolai osztály, pedagógus nevezi be</div>
-        <span class="cat-tag">Csoportos</span>
+      <div class="prize-card">
+        <span class="pi">💧</span>
+        <div class="ptitle">Gardena Micro-Drip-System Indulókészlet magaságyásokhoz</div>
+        <div class="pdesc">Hogy a rajzból valóság legyen — és az egész csoport együtt kertészkedhessen az oviban vagy a suliban.</div>
+        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">KÖZÖS KERT • CSOPORTOS</p>
       </div>
     </div>
-    <div class="center"><a href="#dijak" class="btn btn-primary">Megnézem a díjakat</a></div>
+
+    <div class="participation">
+      🏅 <strong>Minden beküldő gyerek kap egy személyre szóló részvételi oklevelet.</strong> Mert minden alkotás megérdemel egy ünneplést.
+    </div>
   </div>
 </section>
 
@@ -932,56 +1091,6 @@ Négy kategóriában, négy nyeremény — és egy csomó büszke gyerek június
       </div>
     </div>
     <p class="quote-note">Nincs rossz megoldás. Nincs helyes arány. Csak a közös alkotás öröme számít.</p>
-  </div>
-</section>
-
-<!-- PRIZES -->
-<section id="dijak">
-  <div class="container">
-    <h2>Mit lehet nyerni?</h2>
-    <div class="prize-grid">
-      <div class="prize-card">
-        <span class="pi">🌱</span>
-        <div class="ptitle">Gardena kiskertészeknek szóló csomag</div>
-        <div class="pdesc">Igazi kis kertészszerszámok a legkisebbeknek — hogy a rajzból egyszer valóság legyen.</div>
-        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">PÖTTÖM • 3–5 ÉV</p>
-      </div>
-      <div class="prize-card">
-        <span class="pi">🃏</span>
-        <div class="ptitle">Zöldségdzsungel memóriakártya</div>
-        <div class="pdesc">Játék, ami közben észrevétlenül tanulnak is — pont ilyen ez az egész pályázat.</div>
-        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">KIS ALKOTÓK • 6–8 ÉV</p>
-      </div>
-      <div class="prize-card">
-        <span class="pi">📦</span>
-        <div class="ptitle">MyFarm zöldségláda</div>
-        <div class="pdesc">Friss, vegyszermentes zöldségek egyenesen a kertből — mert a nagymenőknek nagymenő díj jár.</div>
-        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">NAGYMENŐK • 9–12 ÉV</p>
-      </div>
-      <div class="prize-card">
-        <span class="pi">💧</span>
-        <div class="ptitle">Gardena Micro-Drip-System Indulókészlet magaságyásokhoz</div>
-        <div class="pdesc">Hogy a rajzból valóság legyen — és az egész csoport együtt kertészkedhessen az oviban vagy a suliban.</div>
-        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">KÖZÖS KERT • CSOPORTOS</p>
-      </div>
-    </div>
-    <div class="participation">
-      🏅 <strong>Minden beküldő gyerek kap egy személyre szóló részvételi oklevelet.</strong> Mert minden alkotás megérdemel egy ünneplést.
-    </div>
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section class="alt">
-  <div class="container">
-    <h2>Egyszerre kaptok majd...</h2>
-    <ul class="benefits-list">
-      <li><span class="ic">✅</span><span>Egy közös alkotós délutánt — amit nem felejtetek el hamar.</span></li>
-      <li><span class="ic">✅</span><span>Büszke gyerekeket — akik látják, hogy a munkájuknak értéke van.</span></li>
-      <li><span class="ic">✅</span><span>Esélyt négy szuper nyereményre — kertészkedős ajándékok, amiket tényleg használni fognak.</span></li>
-      <li><span class="ic">✅</span><span>Személyre szóló részvételi oklevelet — minden beküldő gyerek kap egyet, nyerjen vagy sem.</span></li>
-      <li><span class="ic">✅</span><span>Egy közös kertészkedési élményt az egész csoportnak — ha a Közös kert kategóriában nyertek.</span></li>
-    </ul>
   </div>
 </section>
 
@@ -1046,16 +1155,16 @@ Négy kategóriában, négy nyeremény — és egy csomó büszke gyerek június
       <div class="timeline-item">
         <span class="ic">📅</span>
         <div class="label">Benevezési időszak</div>
-        <div class="date">2025. május 11–31.</div>
+        <div class="date">2026. május 13–31.</div>
       </div>
       <div class="timeline-item">
         <span class="ic">🏆</span>
         <div class="label">Eredményhirdetés</div>
-        <div class="date">2025. június 1.</div>
+        <div class="date">Várjátok velünk június 1-jét!</div>
+        <p style="font-size: 14px; color: var(--text-soft); margin-top: 10px; line-height: 1.55; font-weight: 400;">Az eredményhirdetés után e-mailben értesítünk Titeket, addig pedig szurkoljatok és alkossatok nagy örömmel.</p>
       </div>
     </div>
-    <p class="urgency">⏰ Még van időd — de ne hagyd az utolsó pillanatra!</p>
-    <div class="cta-row" style="justify-content:center;">
+    <div class="cta-row" style="justify-content:center; margin-top: 28px;">
       <a href="#egyeni-form" class="btn btn-primary">Benevezem a gyerekemet</a>
       <a href="#csoportos-form" class="btn btn-secondary">Benevezem a csoportomat</a>
     </div>
@@ -1114,11 +1223,11 @@ Négy kategóriában, négy nyeremény — és egy csomó büszke gyerek június
         <div class="checkbox-group">
           <label class="checkbox-option">
             <input type="checkbox" required>
-            <span>Elolvastam és elfogadom a részvételi feltételeket és az adatkezelési tájékoztatót, és hozzájárulok, hogy a beküldött rajz a szervezők kommunikációs felületein megjelenjen. <span class="req">*</span></span>
+            <span>Elolvastam és elfogadom a <a href="#" class="legal-link" data-tab="terms">részvételi feltételeket</a> és az adatkezelési tájékoztatót, és hozzájárulok, hogy a beküldött rajz a szervezők kommunikációs felületein megjelenjen. <span class="req">*</span></span>
           </label>
           <label class="checkbox-option">
-            <input type="checkbox">
-            <span>Szeretnék hírlevelet kapni a MyFarm Kertek újdonságairól.</span>
+            <input type="checkbox" required>
+            <span>Szeretnék hírlevelet kapni a MyFarm Kertek újdonságairól. Az adatkezelés részleteit az <a href="#" class="legal-link" data-tab="privacy">adatkezelési tájékoztató</a> tartalmazza. <span class="req">*</span></span>
           </label>
         </div>
         <button type="submit" class="submit-btn">Beküldöm a rajzot →</button>
@@ -1154,11 +1263,11 @@ Négy kategóriában, négy nyeremény — és egy csomó büszke gyerek június
         <div class="checkbox-group">
           <label class="checkbox-option">
             <input type="checkbox" required>
-            <span>Elolvastam és elfogadom a részvételi feltételeket és az adatkezelési tájékoztatót, és hozzájárulok, hogy a beküldött rajzok a szervezők kommunikációs felületein megjelenjenek. <span class="req">*</span></span>
+            <span>Elolvastam és elfogadom a <a href="#" class="legal-link" data-tab="terms">részvételi feltételeket</a> és az adatkezelési tájékoztatót, és hozzájárulok, hogy a beküldött rajzok a szervezők kommunikációs felületein megjelenjenek. <span class="req">*</span></span>
           </label>
           <label class="checkbox-option">
-            <input type="checkbox">
-            <span>Szeretnék hírlevelet kapni a MyFarm Kertek újdonságairól.</span>
+            <input type="checkbox" required>
+            <span>Szeretnék hírlevelet kapni a MyFarm Kertek újdonságairól. Az adatkezelés részleteit az <a href="#" class="legal-link" data-tab="privacy">adatkezelési tájékoztató</a> tartalmazza. <span class="req">*</span></span>
           </label>
         </div>
         <button type="submit" class="submit-btn">Beküldöm a rajzokat →</button>
@@ -1170,22 +1279,66 @@ Négy kategóriában, négy nyeremény — és egy csomó büszke gyerek június
 <!-- ORGANIZERS -->
 <section>
   <div class="container">
-    <h2>Kik vagyunk mi?</h2>
-    <p class="section-intro">Nem egy nagy cég találta ki ezt. Három csapat ült össze — és mindhármunknak van otthon gyerek. Pontosan tudjuk, milyen az, amikor azt akarod, hogy a gyerekedet valami megmozgassa — de közben mégis csak játszon.</p>
+    <h2>A pályázat szervezői</h2>
+    <p class="section-intro">Hárman fogtunk össze, mert mindannyian szülők is vagyunk — pontosan tudjuk, milyen jó érzés, amikor van egy értelmes, közös program a gyerekekkel. Ezért hoztuk létre együtt ezt a kezdeményezést.</p>
     <div class="org-grid">
+
       <div class="org-card">
-        <div class="org-name">🌻 MyFarm Kertek</div>
+        <div class="org-logo">
+          <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-label="MyFarm">
+            <path d="M 41 11 A 22 22 0 1 1 19 11" fill="none" stroke="#217A1E" stroke-width="4.5" stroke-linecap="round"/>
+            <line x1="30" y1="48" x2="30" y2="6" stroke="#758C2E" stroke-width="2" stroke-linecap="round"/>
+            <g fill="#FDCC2E">
+              <ellipse cx="25" cy="14" rx="2" ry="4.5" transform="rotate(-25 25 14)"/>
+              <ellipse cx="35" cy="14" rx="2" ry="4.5" transform="rotate(25 35 14)"/>
+              <ellipse cx="23" cy="22" rx="2" ry="4.5" transform="rotate(-25 23 22)"/>
+              <ellipse cx="37" cy="22" rx="2" ry="4.5" transform="rotate(25 37 22)"/>
+              <ellipse cx="23" cy="30" rx="2" ry="4.5" transform="rotate(-25 23 30)"/>
+              <ellipse cx="37" cy="30" rx="2" ry="4.5" transform="rotate(25 37 30)"/>
+              <ellipse cx="25" cy="38" rx="2" ry="4.5" transform="rotate(-25 25 38)"/>
+              <ellipse cx="35" cy="38" rx="2" ry="4.5" transform="rotate(25 35 38)"/>
+            </g>
+            <text x="72" y="40" font-family="'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive" font-size="32" fill="#474747" font-weight="700" font-style="italic">MyFarm</text>
+          </svg>
+        </div>
+        <div class="org-name">MyFarm Kertek</div>
         <p class="org-desc">Mi termesztjük a zöldséget, amit a gyerekek a rajzon ábrázolnak. Hisszük, hogy a természettel való kapcsolat már kiskorban elkezdődik — akár egy rajzon is.</p>
         <a href="https://myfarmharta.com" target="_blank" rel="noopener">myfarmharta.com →</a>
       </div>
+
       <div class="org-card">
-        <div class="org-name">💧 Gardena Magyarország</div>
+        <div class="org-logo">
+          <svg viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg" aria-label="Gardena Magyarország">
+            <text x="110" y="40" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#1a1a1a" font-weight="900" text-anchor="middle" letter-spacing="2.5">GARDENA</text>
+          </svg>
+        </div>
+        <div class="org-name">Gardena Magyarország</div>
         <p class="org-desc">Mi adjuk a szerszámokat, amivel egyszer majd ők is kapálnak — és az öntözőrendszert, amivel az egész csoport együtt gondozhatja az első kertjét.</p>
       </div>
+
       <div class="org-card">
-        <div class="org-name">✨ Sablonmentes.hu</div>
-        <p class="org-desc">Mi ragasztottuk össze ezt az egészet, mert unalmas volt minden más gyerekpályázat amit láttunk. Azt hisszük, egy pályázat is lehet személyes és meleg — nem csak szabályok gyűjteménye.</p>
+        <div class="org-logo">
+          <svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" aria-label="Sablonmentes.hu">
+            <g transform="translate(28, 30)">
+              <g fill="#F47521">
+                <ellipse cx="0" cy="-18" rx="4" ry="9"/>
+                <ellipse cx="13" cy="-13" rx="4" ry="9" transform="rotate(45 13 -13)"/>
+                <ellipse cx="18" cy="0" rx="9" ry="4"/>
+                <ellipse cx="13" cy="13" rx="4" ry="9" transform="rotate(-45 13 13)"/>
+                <ellipse cx="0" cy="18" rx="4" ry="9"/>
+                <ellipse cx="-13" cy="13" rx="4" ry="9" transform="rotate(45 -13 13)"/>
+                <ellipse cx="-18" cy="0" rx="9" ry="4"/>
+                <ellipse cx="-13" cy="-13" rx="4" ry="9" transform="rotate(-45 -13 -13)"/>
+              </g>
+              <circle r="9" fill="#F47521"/>
+            </g>
+            <text x="62" y="38" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#1a1a1a" font-weight="700">Sablonmentes.hu</text>
+          </svg>
+        </div>
+        <div class="org-name">Sablonmentes.hu</div>
+        <p class="org-desc">Sokan Okos Timiként ismerik. Hisszük, hogy egy pályázat is lehet személyes és meleg — nem csak szabályok gyűjteménye, hanem valódi közös élmény.</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -1200,10 +1353,6 @@ Négy kategóriában, négy nyeremény — és egy csomó büszke gyerek június
         <div>Bármivel! Ceruza, zsírkréta, filctoll, festék, akvarell — nincs kötöttség. A lényeg az alkotás öröme.</div>
       </details>
       <details>
-        <summary>Lehet digitális rajzot beküldeni?</summary>
-        <div>Igen, digitálisan rajzolt képet is elfogadunk.</div>
-      </details>
-      <details>
         <summary>Egy gyerek hány rajzot küldhet be?</summary>
         <div>Egyéni kategóriában gyerekenként egy rajzot fogadunk el.</div>
       </details>
@@ -1214,10 +1363,6 @@ Négy kategóriában, négy nyeremény — és egy csomó büszke gyerek június
       <details>
         <summary>Mi van, ha a fotó nem elég éles?</summary>
         <div>Törekedj arra, hogy a rajz jól látható legyen. Természetes fényben készített fotó a legjobb.</div>
-      </details>
-      <details>
-        <summary>Mikor kapjuk meg az oklevelet?</summary>
-        <div>Június 1-je után küldjük ki e-mailben minden benevező szülőnek és pedagógusnak.</div>
       </details>
       <details>
         <summary>Visszavonhatom a hozzájárulásomat?</summary>
@@ -1245,10 +1390,150 @@ Nem kell tökéletesnek lennie. Csak közösnek.</p>
 
 <footer>
   <div class="container">
-    <p>© 2025 Tavaszi Kert Rajzpályázat — szervezők: MyFarm Kertek, Gardena Magyarország, Sablonmentes.hu</p>
+    <p>© 2026 Tavaszi Kert Rajzpályázat — szervezők: MyFarm Kertek, Gardena Magyarország, Sablonmentes.hu</p>
     <p style="margin-top:8px;">Kérdésed van? Írj nekünk: <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a></p>
   </div>
 </footer>
+
+<!-- LEGAL MODAL (lapozható: Részvételi feltételek + Adatkezelési tájékoztató) -->
+<div id="legal-modal" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-tabs" role="tablist">
+        <button type="button" class="modal-tab" data-tab="terms" role="tab">📋 Részvételi feltételek</button>
+        <button type="button" class="modal-tab" data-tab="privacy" role="tab">🔒 Adatkezelési tájékoztató</button>
+      </div>
+      <button type="button" class="modal-close" aria-label="Bezárás">×</button>
+    </div>
+
+    <div class="modal-content">
+
+      <!-- TERMS PANE -->
+      <div class="modal-pane" data-pane="terms" id="legal-modal-title">
+        <h3 class="legal-title">Tavaszi Kert Rajzpályázat 2026</h3>
+        <p class="legal-subtitle">Részvételi feltételek</p>
+
+        <h4>1. A pályázat szervezői</h4>
+        <p>A pályázatot a MyFarm Kertek, a Gardena Magyarország és a Sablonmentes közösen szervezi.</p>
+        <p>Kapcsolat: <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a></p>
+
+        <h4>2. A pályázat célja</h4>
+        <p>A pályázat célja, hogy a gyerekeket a természet, a kertészkedés és a zöldségtermesztés témájával ismertesse meg rajzos alkotásokon keresztül.</p>
+
+        <h4>3. A pályázat témája</h4>
+        <p>Tavaszi zöldségek és tavaszi kert — a gyerekek szabadon ábrázolhatják a kert világát, kedvenc zöldségüket, vagy bármi mást, ami a tavaszi kerthez kapcsolódik.</p>
+
+        <h4>4. Részvételi kategóriák</h4>
+        <p>A pályázat három korcsoportra oszlik:</p>
+        <ul>
+          <li><strong>Pöttöm kategória:</strong> óvodások</li>
+          <li><strong>Kis alkotók kategória:</strong> 1–3. osztályos tanulók</li>
+          <li><strong>Nagymenők kategória:</strong> 4–6. osztályos tanulók</li>
+        </ul>
+
+        <h4>5. Ki vehet részt?</h4>
+        <p>A pályázaton Magyarország területén élő, óvodás vagy általános iskolás korú (3–12 éves) gyerekek vehetnek részt szülői / törvényes képviselői hozzájárulással.</p>
+        <p>A pályázatra beküldött alkotás az adott gyermek saját, önálló munkája kell, hogy legyen.</p>
+
+        <h4>6. A rajz beküldésének módja</h4>
+        <p>A pályázatra az erre a célra kialakított online felületen keresztül lehet jelentkezni. A jelentkezés során meg kell adni:</p>
+        <ul>
+          <li>a gyermek nevét és korát / évfolyamát</li>
+          <li>a szülő / törvényes képviselő nevét és e-mail-címét</li>
+          <li>a rajz fotóját (feltöltve a felületre)</li>
+        </ul>
+        <p>A rajzot jól megvilágított, éles fotón kell beküldeni. A papír mérete és az alkalmazott technika (ceruza, zsírkréta, festék stb.) kötetlen.</p>
+
+        <h4>7. Határidők</h4>
+        <p><strong>Beküldési határidő:</strong> 2026. május 31. éjfél</p>
+        <p><strong>Eredményhirdetés:</strong> 2026. június 1.</p>
+
+        <h4>8. Díjak</h4>
+        <p>Kategóriánként egy győztes kerül kisorsolásra / megválasztásra:</p>
+        <ul>
+          <li><strong>Pöttöm kategória:</strong> Gardena kiskertészeknek szóló csomag</li>
+          <li><strong>Kis alkotók kategória:</strong> Zöldségdzsungel memóriakártya</li>
+          <li><strong>Nagymenők kategória:</strong> MyFarm zöldségláda</li>
+        </ul>
+        <p>A szervezők fenntartják a jogot, hogy különdíjat is adjanak ki.</p>
+
+        <h4>9. Zsűrizés</h4>
+        <p>A beérkezett alkotásokat a szervezők értékelik. Az eredményt 2026. június 1-jén hirdetik meg a szervezők közösségi oldalain.</p>
+
+        <h4>10. A pályázaton való részvétel feltételei</h4>
+        <p>A pályázaton való részvétellel a szülő / törvényes képviselő elfogadja a részvételi feltételeket és az adatkezelési tájékoztatót, és hozzájárul ahhoz, hogy a beküldött rajz a szervezők közösségi oldalain és egyéb kommunikációs felületein megjelenjen (a gyermek neve és a szülő e-mail-címe nélkül).</p>
+
+        <h4>11. Egyéb rendelkezések</h4>
+        <p>A szervezők fenntartják a jogot a pályázati feltételek módosítására, valamint a pályázat visszavonására. A pályázaton beküldött rajzok nem kerülnek visszaküldésre.</p>
+        <p>A pályázattal kapcsolatos kérdéseket a <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a> e-mail-címre lehet küldeni.</p>
+
+        <p class="legal-footer">MyFarm Kertek · Gardena Magyarország · Sablonmentes · 2026</p>
+      </div>
+
+      <!-- PRIVACY PANE -->
+      <div class="modal-pane" data-pane="privacy" hidden>
+        <h3 class="legal-title">Tavaszi Kert Rajzpályázat 2026</h3>
+        <p class="legal-subtitle">Adatkezelési tájékoztató és GDPR-nyilatkozat</p>
+
+        <h4>1. Az adatkezelő</h4>
+        <p><strong>Adatkezelő:</strong> MyFarm Kertek</p>
+        <p><strong>E-mail:</strong> <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a></p>
+        <p><strong>Weboldal:</strong> www.myfarmharta.com</p>
+
+        <h4>2. Kezelt személyes adatok</h4>
+        <p>A pályázatra való jelentkezés során az alábbi személyes adatokat gyűjtjük:</p>
+        <ul>
+          <li>szülő / törvényes képviselő neve</li>
+          <li>szülő / törvényes képviselő e-mail-címe</li>
+          <li>a gyermek keresztneve és kora / évfolyama</li>
+          <li>a beküldött rajz fotója</li>
+        </ul>
+        <p>A beküldött rajzon szereplő képi adatok nem minősülnek személyes adatnak, amennyiben azok alapján az érintett nem azonosítható.</p>
+
+        <h4>3. Az adatkezelés célja</h4>
+        <p>A megadott személyes adatokat az alábbi célokra használjuk fel:</p>
+        <ul>
+          <li>a pályázatra való részvétel lebonyolítása (kategóriába sorolás, eredményhirdetés)</li>
+          <li>a nyertessel való kapcsolatfelvétel és a díj átadásának megszervezése</li>
+          <li>hírlevél küldése a pályázattal és a szervezők tevékenységével kapcsolatos információkról (kizárólag külön hozzájárulás esetén)</li>
+        </ul>
+
+        <h4>4. Az adatkezelés jogalapja</h4>
+        <p>Az adatkezelés jogalapja az érintett önkéntes hozzájárulása (GDPR 6. cikk (1) bekezdés a) pont). A hozzájárulás a jelentkezési űrlapon található jelölőnégyzet bejelölésével adható meg.</p>
+        <p>A hírlevél-feliratkozás jogalapja szintén az érintett önkéntes, kifejezett hozzájárulása.</p>
+
+        <h4>5. Adatmegőrzési idő</h4>
+        <p>A pályázathoz kapcsolódó adatokat a pályázat lezárultától (2026. június 1.) számított 1 évig őrizzük meg, ezt követően töröljük azokat.</p>
+        <p>Amennyiben a szülő / törvényes képviselő hozzájárult a hírlevél fogadásához, az e-mail-címet a hozzájárulás visszavonásáig tároljuk.</p>
+
+        <h4>6. Adattovábbítás</h4>
+        <p>Az adatokat harmadik félnek nem adjuk át, kivéve a társszervező partnereket (Gardena Magyarország, Sablonmentes), akik szintén kötelesek az adatokat bizalmasan kezelni.</p>
+        <p>Az adatok feldolgozásához az alábbi adatfeldolgozókat vehetjük igénybe: e-mail-küldő szolgáltatás (pl. Mailchimp / Brevo), online űrlap-szolgáltató (pl. Google Forms / Typeform). Az adatfeldolgozók az adatokat kizárólag az adatkezelő utasításai szerint kezelhetik.</p>
+
+        <h4>7. Az érintett jogai</h4>
+        <p>A szülő / törvényes képviselő az alábbi jogokat gyakorolhatja:</p>
+        <ul>
+          <li><strong>Hozzáférési jog:</strong> tájékoztatást kérhet a kezelt adatokról.</li>
+          <li><strong>Helyesbítési jog:</strong> kérheti a pontatlan adatok javítását.</li>
+          <li><strong>Törlési jog (elfeledtetéshez való jog):</strong> kérheti adatai törlését.</li>
+          <li><strong>Adathordozhatóság joga:</strong> kérheti adatai géppel olvasható formátumban való kiadását.</li>
+          <li><strong>Tiltakozási jog:</strong> tiltakozhat az adatkezelés ellen.</li>
+          <li><strong>Hozzájárulás visszavonásának joga:</strong> a hozzájárulást bármikor visszavonhatja a hello@myfarmharta.com e-mail-címre küldött kéréssel.</li>
+        </ul>
+        <p>A jogok gyakorlásához kérelmet a <a href="mailto:hello@myfarmharta.com">hello@myfarmharta.com</a> e-mail-címre lehet küldeni. A kérelemre 30 napon belül válaszolunk.</p>
+
+        <h4>8. Jogorvoslat</h4>
+        <p>Amennyiben az érintett úgy véli, hogy adatait jogellenesen kezeljük, panaszt nyújthat be a Nemzeti Adatvédelmi és Információszabadság Hatósághoz (NAIH):</p>
+        <p><strong>Cím:</strong> 1055 Budapest, Falk Miksa utca 9–11.<br>
+           <strong>Weboldal:</strong> www.naih.hu<br>
+           <strong>E-mail:</strong> <a href="mailto:ugyfelszolgalat@naih.hu">ugyfelszolgalat@naih.hu</a></p>
+
+        <p class="legal-footer">MyFarm Kertek · Gardena Magyarország · Sablonmentes · 2026</p>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <script>
   // ============================================================
@@ -1267,6 +1552,60 @@ Nem kell tökéletesnek lennie. Csak közösnek.</p>
       const flow = btn.dataset.flow;
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
       document.querySelectorAll('.flow-steps').forEach(s => s.classList.toggle('active', s.dataset.flow === flow));
+    });
+  });
+
+  // ---- Lapozható modal (Részvételi feltételek + Adatkezelési tájékoztató) ----
+  function openLegalModal(tab) {
+    const modal = document.getElementById('legal-modal');
+    if (!modal) return;
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    switchModalTab(tab || 'terms');
+  }
+  function closeLegalModal() {
+    const modal = document.getElementById('legal-modal');
+    if (!modal) return;
+    modal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  }
+  function switchModalTab(tab) {
+    document.querySelectorAll('.modal-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.tab === tab);
+    });
+    document.querySelectorAll('.modal-pane').forEach(p => {
+      if (p.dataset.pane === tab) p.removeAttribute('hidden');
+      else p.setAttribute('hidden', '');
+    });
+    const content = document.querySelector('.modal-content');
+    if (content) content.scrollTop = 0;
+  }
+
+  // Tab gombok
+  document.querySelectorAll('.modal-tab').forEach(t => {
+    t.addEventListener('click', () => switchModalTab(t.dataset.tab));
+  });
+
+  // Bezárás: X gomb, overlay-re kattintás, Escape billentyű
+  const modalCloseBtn = document.querySelector('.modal-close');
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeLegalModal);
+  const modalOverlay = document.getElementById('legal-modal');
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (ev) => {
+      if (ev.target.id === 'legal-modal') closeLegalModal();
+    });
+  }
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape') closeLegalModal();
+  });
+
+  // Checkbox-feliratokban lévő linkek elfogása —
+  // ne pipálja át a checkbox-ot, csak a modalt nyissa meg
+  document.querySelectorAll('.legal-link').forEach(link => {
+    link.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      openLegalModal(link.dataset.tab);
     });
   });
 
@@ -1345,7 +1684,7 @@ Nem kell tökéletesnek lennie. Csak közösnek.</p>
         <p style="font-size: 16px; color: var(--text-soft); margin: 12px 0 8px;">A pályázatod sorszáma:</p>
         <div style="font-size: 36px; font-weight: 800; color: var(--green-deep); background: var(--sun-soft); padding: 14px 28px; border-radius: 14px; display: inline-block; margin: 8px 0 24px; letter-spacing: 0.05em;">#${serial}</div>
         <p style="color: var(--text-soft); max-width: 480px; margin: 0 auto; line-height: 1.6;">
-          Hamarosan e-mailben visszajelzünk. Eredményhirdetés: <strong style="color: var(--green-deep);">2025. június 1.</strong>
+          Hamarosan e-mailben visszajelzünk. Eredményhirdetés: <strong style="color: var(--green-deep);">2026. június 1.</strong>
         </p>
       </div>
     `;
