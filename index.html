@@ -147,6 +147,43 @@
     max-width: 880px;
     white-space: pre-line;
   }
+  /* Tömör paragrafus-csomag — szinte ragad egymáshoz */
+  .body-text-tight p {
+    margin: 0;
+    line-height: 1.55;
+  }
+  .body-text-tight b {
+    color: var(--green-deep);
+    font-weight: 700;
+  }
+
+  /* Ismerős? lista */
+  .ismeros-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .ismeros-list li {
+    position: relative;
+    padding: 14px 0 14px 36px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .ismeros-list li:last-child { border-bottom: none; }
+  .ismeros-list li::before {
+    content: "🌿";
+    position: absolute;
+    left: 0;
+    top: 14px;
+    font-size: 18px;
+  }
+  .ismeros-list li b {
+    color: var(--green-deep);
+    font-weight: 700;
+  }
   .cta-row {
     display: flex;
     flex-wrap: wrap;
@@ -1027,13 +1064,12 @@
   <div class="container">
     <h1>Rajzoljatok, alkossatok együtt, <span class="accent">és közben nyerjetek!</span></h1>
     <p class="subhead">Rajzpályázat óvodásoknak és kisiskolásoknak.</p>
-    <p class="body-text">A Gardena csapatával és a Sablonmentes.hu-val, akit sokan Okos Timiként ismertek, közösen indítunk egy rajzpályázatot gyerkőcöknek.
-
-Mi is szülők vagyunk, ezért pontosan tudjuk, milyen jó, amikor van egy program, ami egyszerre kreatív, közös élmény és még a gyerekeket is leköti egy kis időre. Most erre hívunk benneteket is.
-
-Szeretnénk, hogy minél több gyerek értse, hogyan működik a természet, és hogy a zöldség ne egy „kötelező rossz" legyen, hanem valami, ami szupererőt ad a mindennapokhoz.
-
-Rajzoljatok egy tavaszi kertet, veteményest vagy a kedvenc zöldségeteket otthon, az oviban vagy akár az iskolában. Lehet egyéni alkotás, de akár közös csoportmunka is. A lényeg, hogy együtt alkossatok, érezzétek jól magatokat, és közben még nyerhettek is.</p>
+    <div class="body-text body-text-tight">
+      <p>A <b>Gardena</b> csapatával és a <b>Sablonmentes.hu</b>-val, akit sokan <b>Okos Timi</b>ként ismertek, közösen indítunk egy rajzpályázatot gyerkőcöknek.</p>
+      <p>Mi is szülők vagyunk, ezért pontosan tudjuk, milyen jó, amikor van egy program, ami egyszerre <b>kreatív, közös élmény</b> és még a gyerekeket is <b>leköti egy kis időre</b>. Most erre hívunk benneteket is.</p>
+      <p>Szeretnénk, hogy minél több gyerek értse, hogyan működik a természet, és hogy a zöldség ne egy „kötelező rossz" legyen, hanem valami, ami <b>szupererőt ad</b> a mindennapokhoz.</p>
+      <p>Rajzoljatok egy tavaszi kertet, veteményest vagy a kedvenc zöldségeteket otthon, az oviban vagy akár az iskolában. Lehet <b>egyéni alkotás</b>, de akár <b>közös csoportmunka</b> is. A lényeg, hogy <b>együtt alkossatok</b>, érezzétek jól magatokat, és közben még <b>nyerhettek is</b>.</p>
+    </div>
     <div class="cta-row">
       <a href="#egyeni-form" class="btn btn-primary">Nevezem a gyerekemet</a>
       <a href="#csoportos-form" class="btn btn-secondary">Nevezem a csoportomat / osztályomat</a>
@@ -1045,12 +1081,12 @@ Rajzoljatok egy tavaszi kertet, veteményest vagy a kedvenc zöldségeteket otth
 <section class="alt">
   <div class="container">
     <h2>Ismerős?</h2>
-    <div class="card-list">
-      <div class="card">Jó lenne végre egy olyan közös program, ami nem a képernyő előtt telik, mégis órákra leköti a gyerekeket és célt ad neki.</div>
-      <div class="card">Szeretnéd, ha a gyereked közelebb kerülne a természethez, és úgy tanulna a zöldségekről, hogy közben észre sem veszi.</div>
-      <div class="card">Pedagógusként keresel egy kreatív projektet, ami az egész csoportot vagy osztályt megmozgatja, és amire még napokkal később is büszkén emlékeznek majd.</div>
-      <div class="card">Jó lenne, ha a gyerekek megélnék, hogy amit készítenek, annak értéke van. Hogy büszkén mutathassák meg: „ezt én rajzoltam".</div>
-    </div>
+    <ul class="ismeros-list">
+      <li>Jó lenne végre egy olyan közös program, ami <b>nem a képernyő előtt telik</b>, mégis <b>órákra leköti a gyerekeket</b> és célt ad neki.</li>
+      <li>Szeretnéd, ha a gyereked közelebb kerülne a <b>természethez</b>, és úgy tanulna a <b>zöldségekről</b>, hogy közben <b>észre sem veszi</b>.</li>
+      <li>Pedagógusként keresel egy <b>kreatív projektet</b>, ami az <b>egész csoportot vagy osztályt</b> megmozgatja, és amire még napokkal később is <b>büszkén emlékeznek</b> majd.</li>
+      <li>Jó lenne, ha a gyerekek megélnék, hogy amit készítenek, annak <b>értéke van</b>. Hogy <b>büszkén mutathassák meg</b>: „ezt én rajzoltam".</li>
+    </ul>
   </div>
 </section>
 
@@ -1059,53 +1095,21 @@ Rajzoljatok egy tavaszi kertet, veteményest vagy a kedvenc zöldségeteket otth
   <div class="container">
     <div class="about-single">
       <h2>Miért csináljuk ezt az egészet?</h2>
-      <p class="about-body about-body-left">Hisszük, hogy a gyerekek akkor tanulnak a legtöbbet, amikor közben jól érzik magukat.
-
-Szülőként mi is pontosan tudjuk, milyen nehéz néha olyan programot találni, ami egyszerre kreatív, közös élmény és nem a képernyő körül forog. Olyat, ami egy kicsit közelebb viszi őket a természethez, az alkotáshoz és egymáshoz is.
-
-Ezért fogott össze a <strong>MyFarm Kertek</strong>, a <strong>Gardena Magyarország</strong> és a <strong>Sablonmentes.hu</strong>, hogy közösen elindítsuk a Tavaszi Kert Rajzpályázatot.
-
-A pályázatra bármely 3–12 éves gyerek jelentkezhet egyénileg, de akár egész óvodai csoportok és iskolai osztályok is csatlakozhatnak pedagógus vezetésével.
-
-Nem a tökéletes rajzot keressük. Hanem azokat az alkotásokat, amik mögött ott van a fantázia, a közös élmény és egy kis szeretet is.</p>
-
-      <p class="about-body about-body-left">Mind a négy kategóriában nyertest hirdetünk.
-
-A három egyéni kategória nyertesei MyFarm finomságokat, Gardena kerti eszközöket és Zöldségdzsungel memóriajátékot is kapnak ajándékba.
-
-Az óvodai és iskolai kategória nyertese pedig az apró meglepetések mellett egy <strong>Gardena Micro-Drip-System indulókészletet</strong> is kap magaságyásokhoz és veteményesekhez, hogy még könnyebb legyen saját kis kertet kialakítani az intézményben.</p>
-    </div>
-
-    <div class="prize-grid">
-      <div class="prize-card">
-        <span class="pi">🌱</span>
-        <div class="ptitle">Gardena kiskertészeknek szóló csomag</div>
-        <div class="pdesc">Igazi kis kertészszerszámok a legkisebbeknek — hogy a rajzból egyszer valóság legyen.</div>
-        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">PÖTTÖM • 3–5 ÉV</p>
+      <div class="about-body about-body-left body-text-tight">
+        <p>Hisszük, hogy a gyerekek akkor <b>tanulnak a legtöbbet</b>, amikor közben <b>jól érzik magukat</b>.</p>
+        <p>Szülőként mi is pontosan tudjuk, milyen nehéz néha olyan programot találni, ami egyszerre <b>kreatív, közös élmény</b> és <b>nem a képernyő körül forog</b>. Olyat, ami egy kicsit közelebb viszi őket a <b>természethez, az alkotáshoz és egymáshoz</b> is.</p>
+        <p>Ezért fogott össze a <b>MyFarm Kertek</b>, a <b>Gardena Magyarország</b> és a <b>Sablonmentes.hu</b>, hogy közösen elindítsuk a Tavaszi Kert Rajzpályázatot.</p>
+        <p>A pályázatra bármely <b>3–12 éves gyerek</b> jelentkezhet egyénileg, de akár egész <b>óvodai csoportok és iskolai osztályok</b> is csatlakozhatnak pedagógus vezetésével.</p>
+        <p><b>Nem a tökéletes rajzot keressük.</b> Hanem azokat az alkotásokat, amik mögött ott van a <b>fantázia</b>, a <b>közös élmény</b> és egy kis <b>szeretet</b> is.</p>
       </div>
-      <div class="prize-card">
-        <span class="pi">🃏</span>
-        <div class="ptitle">Zöldségdzsungel memóriakártya</div>
-        <div class="pdesc">Játék, ami közben észrevétlenül tanulnak is — pont ilyen ez az egész pályázat.</div>
-        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">KIS ALKOTÓK • 6–8 ÉV</p>
-      </div>
-      <div class="prize-card">
-        <span class="pi">📦</span>
-        <div class="ptitle">MyFarm zöldségláda</div>
-        <div class="pdesc">Friss, vegyszermentes zöldségek egyenesen a kertből — mert a nagymenőknek nagymenő díj jár.</div>
-        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">NAGYMENŐK • 9–12 ÉV</p>
-      </div>
-      <div class="prize-card">
-        <span class="pi">💧</span>
-        <div class="ptitle">Gardena Micro-Drip-System Indulókészlet magaságyásokhoz</div>
-        <div class="pdesc">Hogy a rajzból valóság legyen — és az egész csoport együtt kertészkedhessen az oviban vagy a suliban.</div>
-        <p style="margin-top:14px; font-size:12px; color:var(--green-deep); font-weight:600;">KÖZÖS KERT • CSOPORTOS</p>
+
+      <div class="about-body about-body-left body-text-tight">
+        <p><b>Mind a négy kategóriában</b> nyertest hirdetünk.</p>
+        <p>A három <b>egyéni kategória</b> nyertesei <b>MyFarm finomságokat</b>, <b>Gardena kerti eszközöket</b> és <b>Zöldségdzsungel memóriajátékot</b> is kapnak ajándékba.</p>
+        <p>Az <b>óvodai és iskolai kategória</b> nyertese pedig az apró meglepetések mellett egy <b>Gardena Micro-Drip-System indulókészletet</b> is kap magaságyásokhoz és veteményesekhez, hogy még könnyebb legyen <b>saját kis kertet</b> kialakítani az intézményben.</p>
       </div>
     </div>
 
-    <div class="participation">
-      🏅 <strong>Minden beküldő gyerek kap egy személyre szóló részvételi oklevelet.</strong> Mert minden alkotás megérdemel egy ünneplést.
-    </div>
   </div>
 </section>
 
@@ -1228,7 +1232,7 @@ Az óvodai és iskolai kategória nyertese pedig az apró meglepetések mellett 
         <div class="field">
           <label>A te e-mail-címed <span class="req">*</span></label>
           <input type="email" name="email" required>
-          <p class="hint">Ide küldjük az oklevelet és az eredményt.</p>
+          <p class="hint">Ide küldjük az eredményt.</p>
         </div>
         <div class="field">
           <label>A rajz fotója <span class="req">*</span></label>
@@ -1268,7 +1272,7 @@ Az óvodai és iskolai kategória nyertese pedig az apró meglepetések mellett 
         <div class="field">
           <label>Pedagógus e-mail-címe <span class="req">*</span></label>
           <input type="email" name="email" required>
-          <p class="hint">Ide küldjük az eredményt és az okleveleket.</p>
+          <p class="hint">Ide küldjük az eredményt.</p>
         </div>
         <div class="field">
           <label>A rajzok fotói <span class="req">*</span></label>
