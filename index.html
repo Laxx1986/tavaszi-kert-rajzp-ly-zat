@@ -672,6 +672,63 @@
   .submit-btn:hover { background: var(--green); }
   .submit-btn:active { transform: scale(0.98); }
 
+  /* Csoportos kép-lista (gyermeknevek bevitele) */
+  .files-list {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .files-list .files-count {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .files-list .files-count.warn { color: var(--carrot); }
+  .file-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .file-row .file-thumb {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: var(--green-bg);
+    object-fit: cover;
+  }
+  .file-row .file-meta {
+    flex: 1;
+    min-width: 0;
+  }
+  .file-row .file-name {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .file-row .child-name-input {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+  }
+  .file-row .child-name-input:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+
   /* ---------- CHOOSER (form típus választó) ---------- */
   .chooser-grid {
     display: grid;
@@ -1276,8 +1333,9 @@
         </div>
         <div class="field">
           <label>A rajzok fotói <span class="req">*</span></label>
-          <input type="file" name="drawings" accept="image/jpeg,image/png" multiple required>
-          <p class="hint">Több fájl is feltölthető — jpg vagy png, max. 10 MB / fotó.</p>
+          <input type="file" id="csoportos-files-input" name="drawings" accept="image/jpeg,image/png" multiple required>
+          <p class="hint">Egyszerre maximum 20 fájl. Minden képhez add meg a gyermek nevét.</p>
+          <div id="csoportos-files-list" class="files-list"></div>
         </div>
         <div class="checkbox-group">
           <label class="checkbox-option">
@@ -1623,6 +1681,67 @@
     selectFormType('csoportos');
   }
 
+  // ---- Csoportos kép-lista: dinamikus gyermeknév-mezők ----
+  const MAX_GROUP_FILES = 20;
+  const csoportosFilesInput = document.getElementById('csoportos-files-input');
+  const csoportosFilesList = document.getElementById('csoportos-files-list');
+
+  if (csoportosFilesInput && csoportosFilesList) {
+    csoportosFilesInput.addEventListener('change', (ev) => {
+      renderCsoportosFiles(Array.from(ev.target.files));
+    });
+  }
+
+  function renderCsoportosFiles(files) {
+    csoportosFilesList.innerHTML = '';
+    if (files.length === 0) return;
+
+    const tooMany = files.length > MAX_GROUP_FILES;
+    const visibleFiles = files.slice(0, MAX_GROUP_FILES);
+
+    // Counter
+    const counter = document.createElement('div');
+    counter.className = 'files-count' + (tooMany ? ' warn' : '');
+    counter.textContent = tooMany
+      ? `⚠️ ${files.length} kép kiválasztva — csak az első ${MAX_GROUP_FILES}-at küldjük el. Válassz kevesebb képet!`
+      : `${visibleFiles.length} / ${MAX_GROUP_FILES} kép kiválasztva`;
+    csoportosFilesList.appendChild(counter);
+
+    // Per-file rows
+    visibleFiles.forEach((file, idx) => {
+      const row = document.createElement('div');
+      row.className = 'file-row';
+      row.dataset.fileIdx = String(idx);
+
+      const thumb = document.createElement('img');
+      thumb.className = 'file-thumb';
+      thumb.alt = '';
+      const reader = new FileReader();
+      reader.onload = (e) => { thumb.src = e.target.result; };
+      reader.readAsDataURL(file);
+      row.appendChild(thumb);
+
+      const meta = document.createElement('div');
+      meta.className = 'file-meta';
+      const nameLabel = document.createElement('div');
+      nameLabel.className = 'file-name';
+      nameLabel.textContent = file.name;
+      nameLabel.title = file.name;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'child-name-input';
+      input.placeholder = 'Gyermek neve…';
+      input.required = true;
+      input.dataset.fileIdx = String(idx);
+      input.autocomplete = 'off';
+      meta.appendChild(nameLabel);
+      meta.appendChild(input);
+      row.appendChild(meta);
+
+      csoportosFilesList.appendChild(row);
+    });
+  }
+
   // ---- Helper: olvasd be a fájlt base64-ként ----
   function readFileAsBase64(file) {
     return new Promise((resolve, reject) => {
@@ -1648,14 +1767,24 @@
     box.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function showSuccess(form, serial) {
+  function showSuccess(form, result) {
     const card = form.closest('.form-card');
+    const count = result.count || 1;
+    const isMulti = count > 1;
+    const serial = result.serial;
+    const lastSerial = result.lastSerial || serial;
+
+    const serialDisplay = isMulti
+      ? `<div style="font-size: 28px; font-weight: 800; color: var(--green-deep); background: var(--sun-soft); padding: 14px 24px; border-radius: 14px; display: inline-block; margin: 8px 0 18px; letter-spacing: 0.03em;">#${serial} – #${lastSerial}</div>
+         <p style="color: var(--text-soft); font-size: 15px; margin-bottom: 18px;"><b>${count} gyermek</b> nevezését rögzítettük.</p>`
+      : `<div style="font-size: 36px; font-weight: 800; color: var(--green-deep); background: var(--sun-soft); padding: 14px 28px; border-radius: 14px; display: inline-block; margin: 8px 0 24px; letter-spacing: 0.05em;">#${serial}</div>`;
+
     card.innerHTML = `
       <div style="text-align:center; padding: 36px 16px;">
         <div style="font-size: 72px; margin-bottom: 16px;">🌻</div>
         <h2 style="text-align:center; margin-bottom: 12px;">Köszönjük a nevezést!</h2>
-        <p style="font-size: 16px; color: var(--text-soft); margin: 12px 0 8px;">A pályázatod sorszáma:</p>
-        <div style="font-size: 36px; font-weight: 800; color: var(--green-deep); background: var(--sun-soft); padding: 14px 28px; border-radius: 14px; display: inline-block; margin: 8px 0 24px; letter-spacing: 0.05em;">#${serial}</div>
+        <p style="font-size: 16px; color: var(--text-soft); margin: 12px 0 8px;">${isMulti ? 'A nevezések sorszámai:' : 'A pályázatod sorszáma:'}</p>
+        ${serialDisplay}
         <p style="color: var(--text-soft); max-width: 480px; margin: 0 auto; line-height: 1.6;">
           Hamarosan e-mailben visszajelzünk. Eredményhirdetés: <strong style="color: var(--green-deep);">2026. június 1.</strong>
         </p>
@@ -1686,6 +1815,26 @@
       const files = Array.from(fileInput.files);
       if (files.length === 0) throw new Error('Legalább egy rajzot fel kell tölteni.');
 
+      // Csoportos: max 20 + minden képhez kell gyermeknév
+      let childNames = [];
+      if (type === 'csoportos') {
+        if (files.length > MAX_GROUP_FILES) {
+          throw new Error(`Csoportos benevezésnél legfeljebb ${MAX_GROUP_FILES} kép tölthető fel egyszerre. Most ${files.length} kép van kiválasztva.`);
+        }
+        const inputs = form.querySelectorAll('.child-name-input');
+        if (inputs.length !== files.length) {
+          throw new Error('Hiányoznak a gyermek-név mezők. Próbáld meg újra kiválasztani a képeket.');
+        }
+        for (let i = 0; i < inputs.length; i++) {
+          const v = inputs[i].value.trim();
+          if (!v) {
+            inputs[i].focus();
+            throw new Error(`Töltsd ki minden képhez a gyermek nevét (${i + 1}. kép hiányzik).`);
+          }
+          childNames.push(v);
+        }
+      }
+
       const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
       if (totalBytes > MAX_TOTAL_UPLOAD_MB * 1024 * 1024) {
         throw new Error(`A feltöltött képek összmérete túl nagy (max. ${MAX_TOTAL_UPLOAD_MB} MB). Kérjük csökkentsd a felbontást vagy küldd kisebb csomagokban.`);
@@ -1693,6 +1842,11 @@
 
       submitBtn.textContent = `⏳ Képek beolvasása (${files.length} db)...`;
       const filePayload = await Promise.all(files.map(readFileAsBase64));
+
+      // Csoportosnál fűzzük hozzá a gyermek neveket
+      if (type === 'csoportos') {
+        filePayload.forEach((fp, idx) => { fp.childName = childNames[idx]; });
+      }
 
       const formData = new FormData(form);
       const checkboxes = form.querySelectorAll('input[type="checkbox"]');
@@ -1728,7 +1882,7 @@
         throw new Error(result.error || 'Ismeretlen szerverhiba');
       }
 
-      showSuccess(form, result.serial);
+      showSuccess(form, result);
     } catch (err) {
       console.error(err);
       showError(form, `Hiba a beküldés során: ${err.message}. Kérjük próbáld újra, vagy írj a hello@myfarmharta.com címre.`);
